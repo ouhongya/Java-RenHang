@@ -34,14 +34,15 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/try_api_list")
-    public ResponseResult try_api_list(@RequestBody TryApiList adListBean) {
+    public TryApiListRes try_api_list(@RequestBody TryApiList adListBean) {
+        TryApiListRes advertising = null;
         try {
-            TryApiListRes advertising = mtUserService.TryApiList(adListBean);
-            return new ResponseResult(CommonCode.SUCCESS,advertising);
+             advertising = mtUserService.TryApiList(adListBean);
+            return advertising;
         }catch (Exception e){
             log.error(e);
             log.error(GlobalUtils.format(new Date()));
-            return new ResponseResult(CommonCode.ERROR);
+            return advertising;
         }
     }
 
@@ -51,14 +52,15 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/try_api_adInfo")
-    public ResponseResult try_api_adInfo(@RequestBody TryApiAdInfo tryApiAdInfo) {
+    public TryApiAdInfoRes try_api_adInfo(@RequestBody TryApiAdInfo tryApiAdInfo) {
+        TryApiAdInfoRes tryApiAdInfoRes = null;
         try {
-            TryApiAdInfoRes tryApiAdInfoRes = mtUserService.TryApiAdInfo(tryApiAdInfo);
-            return new ResponseResult(CommonCode.SUCCESS,tryApiAdInfoRes);
+             tryApiAdInfoRes = mtUserService.TryApiAdInfo(tryApiAdInfo);
+            return tryApiAdInfoRes;
         }catch (Exception e){
             log.error(e);
             log.error(GlobalUtils.format(new Date()));
-            return new ResponseResult(CommonCode.ERROR);
+            return tryApiAdInfoRes;
         }
     }
 

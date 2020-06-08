@@ -2,7 +2,11 @@ package com.renhang.common.Utils;
 
 import org.springframework.util.DigestUtils;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -38,7 +42,29 @@ public class GlobalUtils {
     }
 
 
-
+    /**
+     * map转换成javaBean
+     * @param map
+     * @return
+     */
+    public static Object transMap2Bean(Map<String,Object> map,Object obj){
+        try{
+            //1.获取bean信息
+            BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
+            PropertyDescriptor[] properties = beanInfo.getPropertyDescriptors();
+            for (PropertyDescriptor prop: properties) {
+                String key = prop.getName();
+                if(map.containsKey(key) && map.get(key) != null){
+                    Object value = map.get(key);
+                    Method setMethod = prop.getWriteMethod();
+                    setMethod.invoke(obj,value);
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return obj;
+    }
 
 
 

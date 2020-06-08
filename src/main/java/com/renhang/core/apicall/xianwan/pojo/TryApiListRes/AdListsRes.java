@@ -1,11 +1,14 @@
 package com.renhang.core.apicall.xianwan.pojo.TryApiListRes;
 
+import lombok.Data;
+
+@Data
 public class AdListsRes {
-    private Integer adid;
+    private String adid;
     private String adname;
     private String adnamecut;
     private String issue;
-    private String adtype;
+    private Integer adtype;
     private String intro;
     private String appsize;
     private String imgurl;
@@ -21,5 +24,5 @@ public class AdListsRes {
     private Long userId;
     private String magnitude;
     private String trialinfo;
-    private String stoptimsec;
+    private Integer stoptimsec;
 }

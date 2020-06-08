@@ -1,0 +1,31 @@
+server:
+  #端口
+  port: 8080
+spring:
+  #应用名称
+  application:
+    name: Java-RenHang
+  #数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: omy360
+    url: jdbc:mysql://192.168.1.80:3306/omy360?characterEncoding=utf-8&serverTimezone=UTC&useUnicode=true
+    type: com.alibaba.druid.pool.DruidDataSource
+  #去求超时时间
+  mvc:
+    async:
+      request-timeout: 60000
+#mybatisXML包扫描
+mybatis:
+  mapperLocations: classpath:com/renhang/core/apicall/xianwan/mapper/XianWanMapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#闲玩配置参数;
+XWAndroid:
+  appid: 4757
+  appsecret: zmfr6t6myz7h9akz
+WXIOS:
+  appId: 4777
+  appsecret: n14fqd8h5afbqsy3
+

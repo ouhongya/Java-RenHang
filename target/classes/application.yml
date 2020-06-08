@@ -18,7 +18,7 @@ spring:
       request-timeout: 60000
 #mybatisXML包扫描
 mybatis:
-  mapperLocations: classpath:com/renhang/core/apicall/xianwan/mapper/XianWanMapper.xml
+  mapperLocations: classpath:com/renhang/core/*/*/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
 #闲玩配置参数;

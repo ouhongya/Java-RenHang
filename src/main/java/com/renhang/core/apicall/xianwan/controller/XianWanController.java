@@ -1,14 +1,12 @@
 package com.renhang.core.apicall.xianwan.controller;
 
-import com.renhang.common.Result.CommonCode;
-import com.renhang.common.Result.ResponseResult;
 import com.renhang.common.Utils.GlobalUtils;
-import com.renhang.core.apicall.xianwan.pojo.TryApiAdClick;
+import com.renhang.core.apicall.xianwan.pojo.TryApiAdClick.TryApiAdClick;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfo;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfoRes.TryApiAdInfoRes;
 import com.renhang.core.apicall.xianwan.pojo.TryApiList;
 import com.renhang.core.apicall.xianwan.pojo.TryApiListRes.TryApiListRes;
-import com.renhang.core.apicall.xianwan.pojo.tryApiAdClickRes;
+import com.renhang.core.apicall.xianwan.pojo.TryApiAdClick.TryApiAdClickRes;
 import com.renhang.core.apicall.xianwan.service.XianWanService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +39,7 @@ public class XianWanController {
             return advertising;
         }catch (Exception e){
             log.error(e);
+            log.error("获取广告列表\n");
             log.error(GlobalUtils.format(new Date()));
             return advertising;
         }
@@ -59,6 +58,7 @@ public class XianWanController {
             return tryApiAdInfoRes;
         }catch (Exception e){
             log.error(e);
+            log.error("查询广告列表\n");
             log.error(GlobalUtils.format(new Date()));
             return tryApiAdInfoRes;
         }
@@ -70,14 +70,16 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/try_api_adClick")
-    public ResponseResult try_api_adClick(@RequestBody TryApiAdClick tryApiAdClick){
+    public TryApiAdClickRes try_api_adClick(@RequestBody TryApiAdClick tryApiAdClick){
+        TryApiAdClickRes tryApiAdClickRes = null;
         try {
-            tryApiAdClickRes tryApiAdClickRes = mtUserService.tryApiAdClick(tryApiAdClick);
-            return new ResponseResult(CommonCode.SUCCESS,tryApiAdClickRes);
+            tryApiAdClickRes = mtUserService.tryApiAdClick(tryApiAdClick);
+            return tryApiAdClickRes;
         }catch (Exception e){
             log.error(e);
+            log.error("广告点击下载抛异常啦\n");
             log.error(GlobalUtils.format(new Date()));
-            return new ResponseResult(CommonCode.ERROR);
+            return tryApiAdClickRes;
         }
     }
 }

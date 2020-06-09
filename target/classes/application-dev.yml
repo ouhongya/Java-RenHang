@@ -1,6 +1,8 @@
 server:
   #端口
   port: 8080
+  servlet:
+    context-path: /
 spring:
   #应用名称
   application:
@@ -28,4 +30,3 @@ XWAndroid:
 XWIOS:
   appId: 4777
   appsecret: n14fqd8h5afbqsy3
-

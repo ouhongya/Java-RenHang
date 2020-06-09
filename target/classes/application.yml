@@ -23,9 +23,8 @@ mybatis:
     map-underscore-to-camel-case: true
 #闲玩配置参数;
 XWAndroid:
-  appId: 4757
+  appid: 4757
   appsecret: zmfr6t6myz7h9akz
 XWIOS:
   appId: 4777
   appsecret: n14fqd8h5afbqsy3
-

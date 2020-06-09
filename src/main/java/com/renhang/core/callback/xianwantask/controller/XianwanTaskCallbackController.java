@@ -30,7 +30,7 @@ public class XianwanTaskCallbackController {
     public XianwanCallbackRes ToTaskAndCallback(@RequestParam Map<String,String> params) {
         XianwanCallbackRes orderCallbackRes = null;
         try {
-            orderCallbackRes = xianwanTaskCallbackService.OrderCallbackService(params);
+            orderCallbackRes = xianwanTaskCallbackService.XianwanCallbackService(params);
         }catch (Exception e){
             log.error("闲玩订单回调出现问题\n"+e);
             log.error(GlobalUtils.format(new Date()));

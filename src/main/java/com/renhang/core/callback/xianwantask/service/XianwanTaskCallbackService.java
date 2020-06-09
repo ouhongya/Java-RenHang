@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface XianwanTaskCallbackService {
 
-    XianwanCallbackRes OrderCallbackService(Map<String, String> params);
+    XianwanCallbackRes XianwanCallbackService(Map<String, String> params);
 }

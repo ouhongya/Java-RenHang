@@ -79,8 +79,7 @@ public class HttpClientUtils {
         return doGet(url, param,null,null);
     }
 
-
-    public static String doPost(String url, Map<String, String> param) {
+    public static String doPost(String url, Map<String, String> param,String headerKey,String headerVal) {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
@@ -97,6 +96,10 @@ public class HttpClientUtils {
                 // 模拟表单
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(paramList,"utf-8");
                 httpPost.setEntity(entity);
+            }
+            //设置请求头
+            if(headerKey!=null&&headerVal!=null){
+                httpPost.addHeader(headerKey, headerVal);
             }
             // 执行http请求
             response = httpClient.execute(httpPost);
@@ -116,7 +119,11 @@ public class HttpClientUtils {
     }
 
     public static String doPost(String url) {
-        return doPost(url, null);
+        return doPost(url, null,null,null);
+    }
+
+    public static String doPost(String url,Map<String, String> param) {
+        return doPost(url, param,null,null);
     }
 
     public static String doPostJson(String url, String json) {

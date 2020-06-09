@@ -7,7 +7,9 @@ import com.renhang.core.callback.xianwan.service.OrderCallbackService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Map;
 
@@ -39,4 +41,15 @@ public class OrderCallbackController {
         return orderCallbackRes;
     }
 
+    /**
+     * 用户订单回调
+     * @return
+     */
+    @GetMapping("/test")
+    public void a(HttpServletRequest request) {
+        Map<String, String[]> map = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : map.entrySet()) {
+            System.out.println(entry.getKey()+":"+entry.getValue().toString());
+        }
+    }
 }

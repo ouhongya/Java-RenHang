@@ -4,8 +4,6 @@ import lombok.Data;
 
 @Data
 public class TokenVo {
-    //媒体ID
-    private  Integer id;
     //媒体方用户UID
     private  Integer uid;
     //媒体方用户设备。iOS - IDFA；Android - IMEI（卡槽1）(安卓10以上系统使用UUID)

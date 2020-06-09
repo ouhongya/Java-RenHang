@@ -1,5 +1,9 @@
 package com.renhang.common.Utils;
 
+import org.apache.commons.codec.binary.Base64;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -63,7 +67,7 @@ public class MD5 {
      *
      * @return 加密后的字符串
      */
-    public static String getMD5(byte[] source) {
+    public static String getMD5(byte[] source)  {
         String s = null;
 
         final int temp = 0xf;
@@ -291,5 +295,39 @@ public class MD5 {
      */
     public static boolean checkFileMD5(String fileName, String md5) throws Exception {
         return checkFileMD5(new File(fileName), md5);
+    }
+
+    private static final Logger logger = LoggerFactory.getLogger(MD5.class);
+
+    private static final String UTF_8 = "UTF-8";
+
+    /**
+     * 对给定的字符串进行base64解码操作
+     */
+    public static String decodeData(String inputData) {
+        try {
+            if (null == inputData) {
+                return null;
+            }
+            return new String(Base64.decodeBase64(inputData.getBytes(UTF_8)), UTF_8);
+        } catch (UnsupportedEncodingException e) {
+        }
+
+        return null;
+    }
+
+    /**
+     * 对给定的字符串进行base64加密操作
+     */
+    public static String encodeData(String inputData) {
+        try {
+            if (null == inputData) {
+                return null;
+            }
+            return new String(Base64.encodeBase64(inputData.getBytes(UTF_8)), UTF_8);
+        } catch (UnsupportedEncodingException e) {
+        }
+
+        return null;
     }
 }

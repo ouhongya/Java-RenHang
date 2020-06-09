@@ -3,7 +3,6 @@ package com.renhang.core.apicall.xianwan.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.renhang.common.Utils.HttpClientUtils;
 import com.renhang.common.Utils.MD5;
-import com.renhang.core.apicall.xianwan.mapper.XianWanMapper;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdClick.TryApiAdClick;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfo;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfoRes.TryApiAdInfoRes;
@@ -22,8 +21,6 @@ import java.util.Map;
 @Service
 public class XianWanServiceImpl implements XianWanService {
 
-    @Autowired
-    XianWanMapper mtUserMapper;
 
     @Value("${XWAndroid.appsecret}")
     private String XWAndroidAppsecret;

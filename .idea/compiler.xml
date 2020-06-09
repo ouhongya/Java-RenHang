@@ -16,7 +16,7 @@
   <component name="JavacSettings">
     <option name="PREFER_TARGET_JDK_COMPILER" value="false" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Java-RenHang" options="" />
+      <module name="Java-RenHang" options="-parameters" />
     </option>
   </component>
 </project>

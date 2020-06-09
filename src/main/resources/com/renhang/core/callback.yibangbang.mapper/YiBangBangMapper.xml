@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.renhang.core.apicall.yibangbang.mapper.YiBangBangMapper">
+<mapper namespace="com.renhang.core.callback.yibangbang.mapper.TaskCallbackMapper">
+    <insert id="insertTaskCallback" parameterType="com.renhang.core.callback.yibangbang.pojo.ReceiveModel">
+        insert into task_yibang (id, CodeInfo, MsgInfo,signature,create_time) values (#{id,jdbcType=VARCHAR}, #{CodeInfo,jdbcType=INTEGER}, #{MsgInfo,jdbcType=VARCHAR},#{signature,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertTaskreqDataCallback" parameterType="com.renhang.core.callback.yibangbang.pojo.reqData">
+        insert into task_reqdata (id, task_id, phone,channel,task_name,task_type,coin,profit,callback_time,create_time) values (#{id,jdbcType=VARCHAR}, #{task_id,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},#{channel,jdbcType=VARCHAR}, #{task_name,jdbcType=VARCHAR},#{task_type,jdbcType=VARCHAR},#{coin,jdbcType=VARCHAR},#{profit,jdbcType=VARCHAR},#{callback_time,jdbcType=VARCHAR},#{create_time,jdbcType=TIMESTAMP})
+    </insert>
+    <select id="findUserbyphone" resultType="com.renhang.core.callback.yibangbang.pojo.Items" parameterType="string">
+        SELECT id,
+        name, head_img, phone , reward
+        FROM task_item
+        WHERE phone = #{phone}
+    </select>
+
 
 </mapper>

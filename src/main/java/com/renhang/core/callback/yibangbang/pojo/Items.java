@@ -3,12 +3,13 @@ package com.renhang.core.callback.yibangbang.pojo;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class ItemModel {
+public class Items {
+  String id;
+  String name;
+  String head_img;
   String phone;
-  String timestamp;
-  String signature;
-  String channel;
+  String reward;
+  String balance;
+
 }

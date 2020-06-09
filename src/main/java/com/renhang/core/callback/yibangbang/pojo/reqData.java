@@ -2,23 +2,19 @@ package com.renhang.core.callback.yibangbang.pojo;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-public class TaskCallbackVo {
-    private Integer adid;
-    private Integer adname;
-    private Integer appid;
-    private Integer ordernum;
-    private Integer dlevel;
-    private Integer pagename;
-    private Integer atype;
-    private Integer deviceid;
-    private Integer simid;
-    private Integer appsign;
-    private Integer merid;
-    private Integer event;
-    private Integer adicon;
-    private Integer price;
-    private Integer money;
-    private Integer itime;
-    private Integer keycode;
+public class reqData {
+    private String id;
+    private String task_id;
+    private String phone;
+    private String channel;
+    private String task_name;
+    private String task_type;
+    private String coin;
+    private String profit;
+    private String callback_time;
+    private Date create_time;
+
 }

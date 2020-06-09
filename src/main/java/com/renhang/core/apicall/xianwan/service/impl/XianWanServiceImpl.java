@@ -87,7 +87,6 @@ public class XianWanServiceImpl implements XianWanService {
 
     /**
      * 查看广告详情
-     *
      * @param tryApiAdInfo
      * @return
      */
@@ -98,10 +97,6 @@ public class XianWanServiceImpl implements XianWanService {
         String str  = "";
         //设备号是否为空,空就传0
         String deviceid = tryApiAdInfo.getDeviceid().isEmpty()?"0":tryApiAdInfo.getDeviceid();
-        //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
-        String msaoaid  = tryApiAdInfo.getMsaoaid().isEmpty() ?"" :  tryApiAdInfo.getMsaoaid();
-        //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-        String androidosv = tryApiAdInfo.getAndroidosv().isEmpty()?"0":tryApiAdInfo.getAndroidosv();
         //广告编号
         map.put("adid", tryApiAdInfo.getAdid());
         //渠道用户id
@@ -109,14 +104,18 @@ public class XianWanServiceImpl implements XianWanService {
         map.put("ptype", tryApiAdInfo.getPtype());
         //判断当前是1苹果还是2安卓
         if (tryApiAdInfo.getPtype().equals("2")) {
-            map.put("appid", XWAndroidAppid);
-            map.put("appsecret", XWAndroidAppsecret);
+            //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
+            String msaoaid  = tryApiAdInfo.getMsaoaid().isEmpty() ?"" :  tryApiAdInfo.getMsaoaid();
+            //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
+            String androidosv = tryApiAdInfo.getAndroidosv().isEmpty()?"0":tryApiAdInfo.getAndroidosv();
+            map.put("appid",XWAndroidAppid);
+            map.put("appsecret",XWAndroidAppsecret);
             //IOS 忽略此参数 安卓操作系统版本号 如:29 、28 （android Q 对应 29）
             map.put("androidosv", androidosv);
             //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
             map.put("msaoaid",msaoaid);
             //字符串拼接
-            str = tryApiAdInfo.getPtype() + deviceid + msaoaid + tryApiAdInfo.getAndroidosv() + XWAndroidAppid + tryApiAdInfo.getAppsign() + tryApiAdInfo.getAdid() + XWAndroidAppsecret;
+            str = tryApiAdInfo.getPtype() + deviceid + msaoaid +androidosv+XWAndroidAppid+ tryApiAdInfo.getAppsign() + tryApiAdInfo.getAdid() +XWAndroidAppsecret;
         } else {
             map.put("appid", XWIOSAppid);
             map.put("appsecret", XWIOSAppsecret);
@@ -124,7 +123,7 @@ public class XianWanServiceImpl implements XianWanService {
             str = tryApiAdInfo.getPtype() + deviceid+ XWIOSAppid + tryApiAdInfo.getAppsign() + tryApiAdInfo.getAdid() + XWIOSAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
-        map.put("keycode",encode );
+        map.put("keycode",encode);
         map.put("xwversion", 2);
         String res = HttpClientUtils.doGet(url, map);
         TryApiAdInfoRes resBean = JSONObject.parseObject(res, TryApiAdInfoRes.class);

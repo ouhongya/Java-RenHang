@@ -8,5 +8,5 @@ public class ApigaoeDetailRes {
     private Integer code;
     private String msg;
     private Integer count;
-    private String data;
+    private DataRes data;
 }

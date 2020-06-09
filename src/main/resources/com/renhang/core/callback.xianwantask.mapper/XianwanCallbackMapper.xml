@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renhang.core.callback.xianwantask.mapper.XianwanCallbackMapper">
+
+    <insert id="insertOrderToUserCallback" parameterType="java.util.Map">
+        insert into order_xianwan
+        (id, adid, adname, appid, ordernum, dlevel, pagename, atype, deviceid, simid, appsign, merid, event, adicon, price, money, itime, keycode,created_time)
+        values
+        (#{params.id},#{params.adid},#{params.adname},#{params.appid},#{params.ordernum},#{params.dlevel},#{params.pagename},#{params.atype},#{params.deviceid},#{params.simid},#{params.appsign},#{params.merid},#{params.event},#{params.adicon},#{params.price},#{params.money},#{params.itime},#{params.keycode},#{params.createdTime})
+    </insert>
+    <select id="queryOrderNum" resultType="java.lang.Integer">
+        select ifnull(count(ordernum),0) from order_xianwan where ordernum = #{orderNum}
+    </select>
+</mapper>

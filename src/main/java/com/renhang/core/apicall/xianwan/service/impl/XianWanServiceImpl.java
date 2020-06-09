@@ -22,7 +22,7 @@ import java.util.Map;
 public class XianWanServiceImpl implements XianWanService {
 
 
-    @Value("${XWAndroid.appsecret}")
+    @Value(value = "${XWAndroid.appsecret}")
     private String XWAndroidAppsecret;
     @Value("${XWAndroid.appId}")
     private String XWAndroidAppid;

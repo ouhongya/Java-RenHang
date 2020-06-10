@@ -1,11 +1,9 @@
-package com.renhang.core.apicall.xianwantask.pojo.TryApiAdInfoRes;
+package com.renhang.core.apicall.xianwantask.pojo;
 
 import lombok.Data;
 
 @Data
-public class TryApiSignature {
-    //渠道id （由闲玩分配）
-    private String appid;
+public class TryApiSubmitTask {
     //渠道用户编号(app中 用户ID)唯一且不变
     private String appsign;
     //1 iPhone 2 安卓
@@ -16,10 +14,12 @@ public class TryApiSignature {
     private String msaoaid;
     //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
     private String androidosv;
-    //加密校验 MD5(appid+deviceid+msaoaid+androidosv+ptype+appsign+appsecret)
-    private String keycode;
     //广告ID
     private String adid;
-
-
+    //任务详情分组ID，取自详情页接口当天的任务明细
+    private String groupId;
+    //任务详情ID
+    private String itemId;
+    //用户提交的答案，如果是截图则提交图片上传后的url
+    private String answer;
 }

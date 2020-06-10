@@ -3,7 +3,10 @@ package com.renhang.core.apicall.yibangbang.service.impl;
 
 
 import com.renhang.common.Utils.HttpClientUtils;
+import com.renhang.common.Utils.MD5;
+import com.renhang.core.apicall.yibangbang.pojo.TaskEntry;
 import com.renhang.core.apicall.yibangbang.service.YiBangBangService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -14,21 +17,21 @@ import java.util.Map;
 
 @Service
 public class YiBangBangServiceImpl implements YiBangBangService {
-//渠道密钥JWV:QMUe
-//渠道别名bkmm00362
+
+    @Value("${TaskEntry.name}")
+    private String taskentryname;
+    @Value("${TaskEntry.secret}")
+    private String taskentrysecret;
     @Override
-    public String TryApiEntry(int phone, String channel) {
-            String md5=String.valueOf(phone)+channel+"";
-            String signature = DigestUtils.md5DigestAsHex(md5.getBytes());
+    public String TryApiEntry(TaskEntry taskentry) {
             Map<String,Object> map=new HashMap<String,Object>();
-            map.put("phone",phone);
-            map.put("channel",channel);
+            map.put("phone",taskentry.getPhone());
+            map.put("channel",taskentryname);
             map.put("time",new Date().getTime());
-            map.put("signature",signature);
-            String response = HttpClientUtils.doGet("https://dev.ehelp.yunbangyin.com/api/external",map);
+            String str=taskentry.getPhone()+taskentryname+taskentrysecret;
+            String res = MD5.MD5Encode(str, "UTF-8", false);
+            map.put("signature",res);
+            String response = HttpClientUtils.doGet("https://c.buuyee.com/api/external",map);
             return response;
     }
-
-
-
 }

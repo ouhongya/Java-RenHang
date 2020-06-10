@@ -10,5 +10,4 @@ public class ItemModel {
   String phone;
   String timestamp;
   String signature;
-  String channel;
 }

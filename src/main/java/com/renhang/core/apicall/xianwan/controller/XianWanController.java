@@ -46,7 +46,7 @@ public class XianWanController {
     }
 
     /**
-     * 查询广告列表
+     * 查询广告详情
      * @param tryApiAdInfo
      * @return
      */

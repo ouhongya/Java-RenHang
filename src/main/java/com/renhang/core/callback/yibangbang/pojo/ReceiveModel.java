@@ -8,10 +8,9 @@ import java.util.Date;
 @Data
 public class ReceiveModel {
     String id;
-    int CodeInfo;
+    String CodeInfo;
     String MsgInfo;
     reqData[] reqData;
     String signature;
-    Date create_time;
-
+    String create_time;
 }

@@ -17,3 +17,4 @@ public class TryApiAdInfo {
     //渠道用户编号(app中 用户ID)唯一且不变
     private String adid;
 }
+

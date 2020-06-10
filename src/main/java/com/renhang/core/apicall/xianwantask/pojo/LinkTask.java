@@ -1,4 +1,4 @@
-package com.renhang.core.apicall.xianwantask.pojo.TryApiAdInfoRes;
+package com.renhang.core.apicall.xianwantask.pojo;
 
 import lombok.Data;
 
@@ -7,5 +7,5 @@ public class LinkTask {
     private Integer status;
     private String msg;
     private String info;
-    private TaskDesc taskdesc;
+    private TaskDesc data;
 }

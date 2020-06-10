@@ -1,4 +1,4 @@
-package com.renhang.core.apicall.xianwantask.pojo.TryApiAdInfoRes;
+package com.renhang.core.apicall.xianwantask.pojo;
 
 import lombok.Data;
 

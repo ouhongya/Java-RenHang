@@ -1,4 +1,4 @@
-package com.renhang.core.apicall.xianwantask.pojo.TryApiAdInfoRes;
+package com.renhang.core.apicall.xianwantask.pojo;
 
 import lombok.Data;
 
@@ -11,6 +11,6 @@ public class CpaTaskDetail {
     private  boolean today;
     private  int layoutType;
     private  Long timeout;
-    private  CpaTaskStep stepList;
+    private CpaTaskStep stepList;
     private  String remark;
 }

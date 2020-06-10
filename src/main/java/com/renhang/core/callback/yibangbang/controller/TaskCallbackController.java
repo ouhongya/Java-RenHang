@@ -22,10 +22,11 @@ public class TaskCallbackController {
      * @param
      * @return
      */
-    @GetMapping("/ToTASKAndCallback")
-    public String taskAndCallback( @RequestBody ReceiveModel receiveModel ) {
+    @PostMapping("/ToTASKAndCallback")
+    public String taskAndCallback(ReceiveModel receiveModel ) {
         try {
              String flag= taskCallbackService.TaskCallbackService(receiveModel);
+             return flag;
         }catch (Exception e){
             log.error("任务墙回调出现问题\n"+e);
             log.error(GlobalUtils.format(new Date()));
@@ -39,23 +40,16 @@ public class TaskCallbackController {
      * @return
      */
     @GetMapping("/ToUserInfoAndCallback")
-    public Item taskToUserAndCallback(@RequestBody ItemModel itemmodel) {
+    public Item taskToUserAndCallback(ItemModel itemmodel) {
+        Item items=null;
         try {
-            Items items = taskCallbackService.TaskUserCallbackService(itemmodel);
-            Item item=new Item();
-            item.setCode(0);
-            item.setMsg("获取成功");
-            item.setItems(items);
-            item.setWait(3);
-            return  item;
+             items = taskCallbackService.TaskUserCallbackService(itemmodel);
+            return  items;
         }catch (Exception e){
             log.error("任务墙回调出现问题\n"+e);
             log.error(GlobalUtils.format(new Date()));
         }
-        Item item=new Item();
-        item.setCode(1);
-        item.setMsg("获失败");
-        return  item;
+        return  items;
     }
 
 

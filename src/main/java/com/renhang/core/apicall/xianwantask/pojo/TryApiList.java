@@ -7,6 +7,8 @@ import lombok.Data;
 public class TryApiList {
     //渠道id （由闲玩分配）
     private String appid;
+    //渠道id （由闲玩分配）
+    private String appsecret;
     //渠道用户编号(app中 用户ID)唯一且不变
     private String appsign;
     //1 iPhone 2 安卓
@@ -19,16 +21,6 @@ public class TryApiList {
     private String androidosv;
     //加密校验 MD5(appid+deviceid+msaoaid+androidosv+ptype+appsign+appsecret)
     private String keycode;
-////old
-//    //默认值 2 （2 ：表示已实现打开相册 scheme唤醒功能）
-//    private Integer xwversion;
-//    //广告类型 0：全部，-99:推荐，-98：简单广告，-97:有福利活动，1：益智 2：应用（已弃用）3：手游（不参与签名） 6：捕鱼
-//    private String adtype;
-//    //按广告名称查询（不参与签名）
-//    private String adname;
-//    //页大小，默认200（不参与签名）
-//    private String  pagesize;
-////old
     //传 0：全部 1：正在参与
     private Integer adListType;
     //广告类型 0全部(默认) ；10下载任务； 11免下载任务； 12问卷任务

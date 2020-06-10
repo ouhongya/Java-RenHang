@@ -28,6 +28,17 @@ XWAndroid:
 XWIOS:
   appId: 4777
   appsecret: n14fqd8h5afbqsy3
+#闲玩任务配置参数;
+XWAndroidTask:
+  appid: 3702
+  appsecret: 1m5xs87lhouzunle
+XWIOSTask:
+  appId:
+  appsecret:
+#任务墙入口配置参数;
+TaskEntry:
+  name: QMUe
+  secret: bkmm00362
 #闲娱参数
 XYWeb:
   id: 458

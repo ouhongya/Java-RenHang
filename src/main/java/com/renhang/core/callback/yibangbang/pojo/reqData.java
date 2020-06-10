@@ -2,7 +2,6 @@ package com.renhang.core.callback.yibangbang.pojo;
 
 import lombok.Data;
 
-import java.util.Date;
 
 @Data
 public class reqData {
@@ -15,6 +14,6 @@ public class reqData {
     private String coin;
     private String profit;
     private String callback_time;
-    private Date create_time;
+    private String create_time;
 
 }

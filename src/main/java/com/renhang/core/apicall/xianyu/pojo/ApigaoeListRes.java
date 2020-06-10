@@ -1,4 +1,4 @@
-package com.renhang.core.apicall.xiaozhuzhuanqian.pojo;
+package com.renhang.core.apicall.xianyu.pojo;
 
 import lombok.Data;
 

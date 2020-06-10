@@ -28,3 +28,7 @@ XWAndroid:
 XWIOS:
   appId: 4777
   appsecret: n14fqd8h5afbqsy3
+#闲娱参数
+XYWeb:
+  id: 458
+  appKey: bc62175cb7f4d4a1ab

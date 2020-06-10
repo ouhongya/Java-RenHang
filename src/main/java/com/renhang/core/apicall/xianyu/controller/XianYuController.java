@@ -1,12 +1,12 @@
-package com.renhang.core.apicall.xiaozhuzhuanqian.controller;
+package com.renhang.core.apicall.xianyu.controller;
 
 import com.renhang.common.Utils.GlobalUtils;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.ApigaoeDetailRes.ApigaoeDetailRes;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.ApigaoeListRes;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.TokenVo;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.ApigaoeVo;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.VerifyVo;
-import com.renhang.core.apicall.xiaozhuzhuanqian.service.XiaoZhuoZhuanQianService;
+import com.renhang.core.apicall.xianyu.pojo.ApigaoeDetailRes.ApigaoeDetailRes;
+import com.renhang.core.apicall.xianyu.pojo.ApigaoeListRes;
+import com.renhang.core.apicall.xianyu.pojo.TokenVo;
+import com.renhang.core.apicall.xianyu.pojo.ApigaoeVo;
+import com.renhang.core.apicall.xianyu.pojo.VerifyVo;
+import com.renhang.core.apicall.xianyu.service.XianYuService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ import java.util.Date;
 @RestController
 @RequestMapping("/sspmdl")
 @Log4j2
-public class XiaoZhuoZhuanQinaController {
+public class XianYuController {
 
     @Autowired
-    private XiaoZhuoZhuanQianService xiaoZhuoZhuanQianService;
+    private XianYuService xiaoZhuoZhuanQianService;
 
     /**
      * 获取token

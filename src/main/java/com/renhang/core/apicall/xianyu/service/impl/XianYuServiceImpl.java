@@ -1,14 +1,14 @@
-package com.renhang.core.apicall.xiaozhuzhuanqian.service.impl;
+package com.renhang.core.apicall.xianyu.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.renhang.common.Utils.HttpClientUtils;
 import com.renhang.common.Utils.MD5;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.ApigaoeDetailRes.ApigaoeDetailRes;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.ApigaoeListRes;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.ApigaoeVo;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.TokenVo;
-import com.renhang.core.apicall.xiaozhuzhuanqian.pojo.VerifyVo;
-import com.renhang.core.apicall.xiaozhuzhuanqian.service.XiaoZhuoZhuanQianService;
+import com.renhang.core.apicall.xianyu.pojo.ApigaoeDetailRes.ApigaoeDetailRes;
+import com.renhang.core.apicall.xianyu.pojo.ApigaoeListRes;
+import com.renhang.core.apicall.xianyu.pojo.ApigaoeVo;
+import com.renhang.core.apicall.xianyu.pojo.TokenVo;
+import com.renhang.core.apicall.xianyu.pojo.VerifyVo;
+import com.renhang.core.apicall.xianyu.service.XianYuService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
+public class XianYuServiceImpl implements XianYuService {
 
     @Value("${XYWeb.id}")
     private String id;
@@ -27,14 +27,12 @@ public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
      * 获取token
      * @param tokenVo
      * @return
-     * MD5(base64 ( " device = 864804031618796 & id = 12 & phone = 2 & uid = 12322 & ") + "c37e5e4685bee3564f" )
      */
     @Override
     public ApigaoeVo getToken(TokenVo tokenVo) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/gettoken";
         Map<String,String> map = new HashMap<>();
         map.put("device",tokenVo.getDevice());
-        map.put("device2","");
         map.put("id",id);
         map.put("phone",tokenVo.getPhone().toString());
         map.put("uid",tokenVo.getUid().toString());
@@ -42,7 +40,7 @@ public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
         //进⾏base64编码
         String encodeData = MD5.encodeData(str)+appKey;
         //对拼接key的字符串进行md5加密，最后的值即为sign值
-        String sign = MD5.getMD5(encodeData);
+        String sign = MD5.MD5Encode(encodeData,"UTF-8",false);
         map.put("sign",sign);
         //发请求拿数据
         String res = HttpClientUtils.doPost(url, map);
@@ -58,7 +56,7 @@ public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
     public ApigaoeListRes apigaoeList() {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/list";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTY1NzU1MTEyLCJleHBpcmUiOjE1NjU3OTgzMTIsImF1dGgiOiJkaXlITUFDIn0%253D.eyJ1c2VyIjp7ImlkIjoiMTE4IiwicGhvbmUiOiIyIiwiZGV2aWNlIjoiNThCQjZEQTgtMkZDNy00RTAyLTg3RkYtN0IzMjdBMUEyRjg1IiwibWVkaWFfaWQiOiIxMTEiLCJ1c2VyX2lkIjoiMTEwIiwicHJvcGVydHkiOiIyMSJ9LCJtZWRpYSI6eyJpZCI6MTExLCJ0YXNrX3R5cGUiOiIxMjMiLCJ3aXRoZHJhd190eXBlIjoiMSIsImV4Y2hhbmdlX3JhdGUiOiIxMDAwIiwiY3VycmVuY3lfdW5pdCI6Ilx1NWUwMSJ9fQ%253D%253D.b44d1eba51abf41b93adda5f547e2bda5bfbaa53cf124e9eb26efa1ead9793ec";
+        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
         String res = HttpClientUtils.doGet(url,headerKey,headerVal);
         ApigaoeListRes apigaoeListRes = JSONObject.parseObject(res, ApigaoeListRes.class);
         return apigaoeListRes;
@@ -73,7 +71,7 @@ public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
     public ApigaoeDetailRes apigaoeDetail(String id) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/detail";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTY1NzU1MTEyLCJleHBpcmUiOjE1NjU3OTgzMTIsImF1dGgiOiJkaXlITUFDIn0%253D.eyJ1c2VyIjp7ImlkIjoiMTE4IiwicGhvbmUiOiIyIiwiZGV2aWNlIjoiNThCQjZEQTgtMkZDNy00RTAyLTg3RkYtN0IzMjdBMUEyRjg1IiwibWVkaWFfaWQiOiIxMTEiLCJ1c2VyX2lkIjoiMTEwIiwicHJvcGVydHkiOiIyMSJ9LCJtZWRpYSI6eyJpZCI6MTExLCJ0YXNrX3R5cGUiOiIxMjMiLCJ3aXRoZHJhd190eXBlIjoiMSIsImV4Y2hhbmdlX3JhdGUiOiIxMDAwIiwiY3VycmVuY3lfdW5pdCI6Ilx1NWUwMSJ9fQ%253D%253D.b44d1eba51abf41b93adda5f547e2bda5bfbaa53cf124e9eb26efa1ead9793ec";
+        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         String res = HttpClientUtils.doGet(url,map,headerKey,headerVal);
@@ -90,7 +88,7 @@ public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
     public ApigaoeVo apigaoeApply(String id) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/apply";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTY1NzU1MTEyLCJleHBpcmUiOjE1NjU3OTgzMTIsImF1dGgiOiJkaXlITUFDIn0%253D.eyJ1c2VyIjp7ImlkIjoiMTE4IiwicGhvbmUiOiIyIiwiZGV2aWNlIjoiNThCQjZEQTgtMkZDNy00RTAyLTg3RkYtN0IzMjdBMUEyRjg1IiwibWVkaWFfaWQiOiIxMTEiLCJ1c2VyX2lkIjoiMTEwIiwicHJvcGVydHkiOiIyMSJ9LCJtZWRpYSI6eyJpZCI6MTExLCJ0YXNrX3R5cGUiOiIxMjMiLCJ3aXRoZHJhd190eXBlIjoiMSIsImV4Y2hhbmdlX3JhdGUiOiIxMDAwIiwiY3VycmVuY3lfdW5pdCI6Ilx1NWUwMSJ9fQ%253D%253D.b44d1eba51abf41b93adda5f547e2bda5bfbaa53cf124e9eb26efa1ead9793ec";
+        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         String res = HttpClientUtils.doGet(url,map,headerKey,headerVal);
@@ -107,7 +105,7 @@ public class XiaoZhuoZhuanQianServiceImpl implements XiaoZhuoZhuanQianService {
     public ApigaoeVo apigaoeCancel(String id) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/cancel";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTY1NzU1MTEyLCJleHBpcmUiOjE1NjU3OTgzMTIsImF1dGgiOiJkaXlITUFDIn0%253D.eyJ1c2VyIjp7ImlkIjoiMTE4IiwicGhvbmUiOiIyIiwiZGV2aWNlIjoiNThCQjZEQTgtMkZDNy00RTAyLTg3RkYtN0IzMjdBMUEyRjg1IiwibWVkaWFfaWQiOiIxMTEiLCJ1c2VyX2lkIjoiMTEwIiwicHJvcGVydHkiOiIyMSJ9LCJtZWRpYSI6eyJpZCI6MTExLCJ0YXNrX3R5cGUiOiIxMjMiLCJ3aXRoZHJhd190eXBlIjoiMSIsImV4Y2hhbmdlX3JhdGUiOiIxMDAwIiwiY3VycmVuY3lfdW5pdCI6Ilx1NWUwMSJ9fQ%253D%253D.b44d1eba51abf41b93adda5f547e2bda5bfbaa53cf124e9eb26efa1ead9793ec";
+        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         String res = HttpClientUtils.doGet(url,map,headerKey,headerVal);

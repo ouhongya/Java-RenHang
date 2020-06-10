@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.renhang.core.callback.xianwantask.mapper.XianwanCallbackMapper">
-
     <insert id="insertOrderToUserCallback" parameterType="java.util.Map">
         insert into confrim_xianwan
-        (id, appId, appSign, adid, adName, adImg, taskId, describe, dayNo, award, itemId, itemType, answer, status, rejectCause, sign, createdTime)
+        (id, appId, appSign, adid, adName, adImg, taskId, confrim_xianwan.describe, dayNo, award, itemId, itemType, answer, status, rejectCause, sign, createdTime)
         values
         (#{params.id},#{params.appId},#{params.appSign},#{params.adid},#{params.adName},
         #{params.adImg},#{params.taskId},#{params.describe},#{params.dayNo},#{params.award},

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renhang.core.callback.xianyu.mapper.XianYuOrderCallbackMapper">
+
+
+    <insert id="XianYuToOrderCallbackTo" parameterType="java.util.Map">
+        insert into order_xianyu (id, time, mediaId, userId, device, taskId, money, taskType, remainIdx, title, mediaProfit, sign, created_time) VALUES
+        (
+         #{params.id},#{params.time}, #{params.mediaId},#{params.userId}, #{params.device},#{params.taskId}, #{params.money},#{params.taskType},
+         #{params.remainIdx},#{params.title}, #{params.mediaProfit},#{params.sign},#{params.created_time}
+        )
+    </insert>
+    <insert id="XianYuOrderCallbackFailure" parameterType="java.util.Map">
+        insert  into order_xianyu_failure (id, time, mediaId, userId, device, taskId, title, sign, created_time) values
+        (
+         #{params.id},#{params.time},#{params.mediaId},#{params.userId},#{params.device},#{params.taskId},#{params.title},
+         #{params.sign},#{params.created_time}
+         )
+    </insert>
+    <insert id="XianYuNotification" parameterType="java.util.Map">
+        insert into order_xianyu_notification (id, ids, created_time)
+        VALUES (#{params.id},#{params.ids},#{params.created_time})
+    </insert>
+</mapper>

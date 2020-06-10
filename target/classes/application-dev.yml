@@ -1,8 +1,6 @@
 server:
   #端口
   port: 8080
-  servlet:
-    context-path: /
 spring:
   #应用名称
   application:
@@ -29,15 +27,8 @@ XWAndroid:
   appsecret: zmfr6t6myz7h9akz
 XWIOS:
   appId: 4777
-<<<<<<< HEAD
   appsecret: n14fqd8h5afbqsy3
-=======
-  appsecret: n14fqd8h5afbqsy3
-#闲娱配置参数
+#闲娱参数
 XYWeb:
   id: 458
   appKey: bc62175cb7f4d4a1ab
-
-
-
->>>>>>> 7133f1c614c8cafaccccc4e44c13710c429a7c23

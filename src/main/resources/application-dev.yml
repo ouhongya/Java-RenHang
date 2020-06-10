@@ -32,3 +32,9 @@ XWIOS:
 XYWeb:
   id: 458
   appKey: bc62175cb7f4d4a1ab
+#小桔参数
+origin:
+  appKey:
+  appSecret:
+  dataSecret:
+  sigSecret:

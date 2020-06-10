@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renhang.core.callback.kendeji.mapper.KenDeJiOrderCallbackMapper">
+
+    <insert id="createdOrderEvent" parameterType="com.renhang.core.callback.kendeji.pojo.OrderEventVo">
+        insert into order_kendeji_orderEvent
+        (id, orderNo, eventType, data, platformId, platform, sign, cancelReason, cancelProducts, refundAmount, refundTime, created_Time)
+         VALUES
+        (
+        #{id},#{orderNo},#{eventType},#{platformId},#{platform},#{sign},#{data.cancelProducts},#{data.refundAmount},#{data.refundTime},#{createdTime}
+        )
+    </insert>
+
+    <insert id="createdOrderKenDeJi" parameterType="com.renhang.core.callback.kendeji.pojo.KfcOrderVo">
+        insert into order_kendeji
+         (id, createTime, updateTime, userId, orderNo, status, statusDesc, unitPrice, totalPrice, paymentTime, amount, quantity, drawTime, ticket, userRemark, commissionPrice, userMobile, cancelTime, userName, refundPrice, platformUniqueId, kfcOrderMobileSuffix, kfcOrderMobileRemark, cityName, storeName, storeAddress, eatType)
+         VALUES
+        (
+        #{id},#{createdTime},#{updateTime},#{userId},#{orderNo},#{status},#{statusDesc},#{unitPrice},#{totalPrice},#{paymentTime},#{amount},#{quantity},#{drawTime},#{ticket},#{userRemark},#{commissionPrice},#{userMobile},#{cancelTime},#{userName},#{refundPrice},#{platformUniqueId},#{kfcOrderMobileSuffix},#{kfcOrderMobileRemark},#{kfcPlaceOrder.cityName},#{kfcPlaceOrder.storeName},#{kfcPlaceOrder.storeAddress},#{kfcPlaceOrder.eatType}
+        )
+    </insert>
+
+    <insert id="createdOrderKenDeJiItem" parameterType="com.renhang.core.callback.kendeji.pojo.KfcPlaceOrderItemVo">
+        insert into order_kendeji_items
+        (id, productId, productName, quantity, price, imageUrl, canceled, order_kendejiId, created_time)
+        values
+        (
+        #{id},#{productId},#{productName},#{quantity},#{price},#{imageUrl},#{canceled},#{order_kendejiId},#{createdTime}
+        )
+    </insert>
+
+    <select id="queryKftRefundTime" resultType="java.lang.Integer">
+        select ifnull(sum(order_kendeji_orderEvent.id),0) from order_kendeji_orderEvent where refundTime = #{perams}
+    </select>
+</mapper>

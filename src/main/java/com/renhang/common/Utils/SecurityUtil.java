@@ -12,10 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SecurityUtil {
-    private static final String appKey = "";
-    private static final String appSecret = "";
-    private static final String dataSecret = "";
-    private static final String sigSecret = "";
+    private static final String appKey = "xiongtest";
+    private static final String appSecret = "HlqAnnonTUxDr51AynjlNYzdt+OYXaqceMI70CskDis=";
+    private static final String dataSecret = "HlqAnnonTUxDr51A";
+    private static final String sigSecret = "XaqceMI70CskDis=";
 
     public static void main(String[] args) throws Exception {
         Map<String, Object> originRequestDataMap = new HashMap<String, Object>(4) {

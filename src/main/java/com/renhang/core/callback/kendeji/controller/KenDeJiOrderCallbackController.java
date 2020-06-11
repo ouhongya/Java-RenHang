@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/kendeji")
+@RequestMapping("/kfc")
 @Log4j2
 public class KenDeJiOrderCallbackController {
 
     @Autowired
     KenDeJiOrderCallbackService kenDeJiOrderCallbackService;
 
-    @PostMapping("/kfcOrder/notify")
+    @PostMapping("/order/notify")
     public String KenDeJiOrderCallback(@RequestBody OrderEventVo orderEventVo) {
         String response = "";
         try {

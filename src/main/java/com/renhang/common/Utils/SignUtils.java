@@ -23,7 +23,7 @@ public class SignUtils {
      */
     @SneakyThrows
     public static String generateSign(Map<String, String> map, String secret) {
-        Map<String, String> reqMap = new TreeMap<>(map);
+        Map<String, String> reqMap = new TreeMap<String, String>(map);
 
         StringBuilder paramBuilder = new StringBuilder();
         reqMap.forEach((k, v) ->

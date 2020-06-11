@@ -32,3 +32,14 @@ XWIOS:
 XYWeb:
   id: 458
   appKey: bc62175cb7f4d4a1ab
+#小桔参数
+origin:
+  appKey:
+  appSecret:
+  dataSecret:
+  sigSecret:
+#肯德基
+kfc:
+  id: 10247
+  secret: ryw81wbh5k673i05
+  url: https://live.qianzhu8.com

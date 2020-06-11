@@ -10,13 +10,11 @@ import com.renhang.core.callback.kendeji.pojo.*;
 import com.renhang.core.callback.kendeji.service.KenDeJiOrderCallbackService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Log4j2
@@ -24,6 +22,13 @@ public class KenDeJiOrderCallbackServiceImpl implements KenDeJiOrderCallbackServ
 
     @Autowired
     KenDeJiOrderCallbackMapper kenDeJiOrderCallbackMapper;
+
+    @Value("${kfc.secret}")
+    private String secret;
+    @Value("${kfc.id}")
+    private String key;
+    @Value("${kfc.url}")
+    private String url;
 
     /**
      * 肯德基订单回调
@@ -104,7 +109,7 @@ public class KenDeJiOrderCallbackServiceImpl implements KenDeJiOrderCallbackServ
         requestMap.put("eventType", orderEventVo.getEventType().toString());
         requestMap.put("platformId", orderEventVo.getPlatformId().toString());
         requestMap.put("platform", orderEventVo.getPlatform());
-        final String sign = SignUtils.generateSign(requestMap,"秘钥");
+        final String sign = SignUtils.generateSign(requestMap,secret);
         Assert.isTrue(sign.equalsIgnoreCase(orderEventVo.getSign()), "签名校验失败。");
     }
 
@@ -114,8 +119,14 @@ public class KenDeJiOrderCallbackServiceImpl implements KenDeJiOrderCallbackServ
      * @return 订单
      */
     private KfcOrder getByOrderNo(String orderNo) {
-        String url = "/openApi/v1/kfcOrders/getByOrderNo";
-        String res = HttpClientUtils.doPost(url);
+        String requestUrl = url+"/openApi/v1/kfcOrders/getByOrderNo";
+        Map<String,String> map = new TreeMap<String,String>();
+        map.put("platformId",key);
+        map.put("orderNo",orderNo);
+        map.put("timestamp",String.valueOf(System.currentTimeMillis()));
+        map.put("sign",SignUtils.generateSign(map,secret));
+        String params = JSON.toJSONString(map);
+        String res = HttpClientUtils.doPostJson(requestUrl, params);
         KfcOrder orderVo = JSONObject.parseObject(res, KfcOrder.class);
         if(orderVo==null){
             log.error("获取肯德基订单号异常");

@@ -68,6 +68,54 @@ public class HttpClientUtils {
         }
         return resultString;
     }
+    public static String doGetStr(String url, Map<String, String> param,String headerKey,String headerVal) {
+
+        // 创建Httpclient对象
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+
+        String resultString = "";
+        CloseableHttpResponse response = null;
+        try {
+            // 创建uri
+            URIBuilder builder = new URIBuilder(url);
+            if (param != null) {
+                for (String key : param.keySet()) {
+                    if(param.get(key)==null){
+                        builder.addParameter(key,"");
+                    }else{
+                        builder.addParameter(key,param.get(key).toString());
+                    }
+                }
+            }
+            URI uri = builder.build();
+
+            // 创建http GET请求
+            HttpGet httpGet = new HttpGet(uri);
+            //设置请求头
+            if(headerKey!=null&&headerVal!=null){
+                httpGet.addHeader(headerKey, headerVal);
+            }
+
+            // 执行请求
+            response = httpclient.execute(httpGet);
+            // 判断返回状态是否为200
+            if (response.getStatusLine().getStatusCode() == 200) {
+                resultString = EntityUtils.toString(response.getEntity(), "UTF-8");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (response != null) {
+                    response.close();
+                }
+                httpclient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultString;
+    }
 
     public static String doGet(String url) {
         return doGet(url, null,null,null);
@@ -77,6 +125,9 @@ public class HttpClientUtils {
     }
     public static String doGet(String url, Map<String, Object> param) {
         return doGet(url, param,null,null);
+    }
+    public static String doGetStr(String url, Map<String, String> param) {
+        return doGetStr(url, param,null,null);
     }
 
     public static String doPost(String url, Map<String, String> param,String headerKey,String headerVal) {

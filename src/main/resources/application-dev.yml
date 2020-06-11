@@ -38,3 +38,8 @@ origin:
   appSecret:
   dataSecret:
   sigSecret:
+#肯德基
+kfc:
+  id: 10247
+  secret: ryw81wbh5k673i05
+  url: https://live-test.qianzhu8.com

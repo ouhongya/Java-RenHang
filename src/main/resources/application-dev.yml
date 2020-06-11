@@ -37,8 +37,8 @@ XWIOSTask:
   appsecret:
 #任务墙入口配置参数;
 TaskEntry:
-  name: QMUe
-  secret: bkmm00362
+  name: bkmm00362
+  secret: JWV:QMUe
 #闲娱参数
 XYWeb:
   id: 458

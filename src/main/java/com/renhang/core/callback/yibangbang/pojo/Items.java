@@ -8,6 +8,6 @@ public class Items {
   String name;
   String head_img;
   String reward;
-  String balance;
+  double balance;
 
 }

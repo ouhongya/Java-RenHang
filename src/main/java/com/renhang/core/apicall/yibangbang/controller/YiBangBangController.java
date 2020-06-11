@@ -4,6 +4,7 @@ import com.renhang.common.Result.CommonCode;
 import com.renhang.common.Result.ResponseResult;
 import com.renhang.common.Utils.GlobalUtils;
 import com.renhang.common.Utils.HttpClientUtils;
+import com.renhang.core.apicall.yibangbang.pojo.TaskEntry;
 import com.renhang.core.apicall.yibangbang.service.YiBangBangService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,14 @@ public class YiBangBangController {
      * @return
      */
     @GetMapping("/try_api_entry")
-    public ResponseResult try_api_list(int phone,String channel) {
+    public String try_api_list(TaskEntry taskentry) {
         try {
-            String response = mtUserService.TryApiEntry(phone, channel);
-            return new ResponseResult(CommonCode.SUCCESS,response);
+            String response = mtUserService.TryApiEntry(taskentry);
+            return response;
         }catch (Exception e){
             log.error(e);
             log.error(GlobalUtils.format(new Date()));
-            return new ResponseResult(CommonCode.ERROR);
+            return "fail";
         }
     }
 

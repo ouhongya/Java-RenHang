@@ -1,8 +1,9 @@
 package com.renhang.core.apicall.yibangbang.service;
 
 
+import com.renhang.core.apicall.yibangbang.pojo.TaskEntry;
 
 public interface YiBangBangService {
-     String  TryApiEntry(int phone,String channel);
+     String  TryApiEntry(TaskEntry taskentry);
 
 }

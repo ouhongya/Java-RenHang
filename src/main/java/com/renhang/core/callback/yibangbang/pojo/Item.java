@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Item {
-    private  int code;
+    private  String code;
     private  String msg;
     private  Items items;
-    private  int wait;
+    private  String wait;
 
 }

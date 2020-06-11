@@ -1,10 +1,9 @@
-package com.renhang.core.apicall.xianwantask.pojo.TryApiAdInfoRes;
+package com.renhang.core.apicall.xianwantask.pojo;
 
 import lombok.Data;
+
 @Data
-public class TryApiScreenshotbase {
-    //渠道id （由闲玩分配）
-    private String appid;
+public class TryApiSignature {
     //渠道用户编号(app中 用户ID)唯一且不变
     private String appsign;
     //1 iPhone 2 安卓
@@ -19,6 +18,6 @@ public class TryApiScreenshotbase {
     private String keycode;
     //广告ID
     private String adid;
-    //文件
-    private String data;
+
+
 }

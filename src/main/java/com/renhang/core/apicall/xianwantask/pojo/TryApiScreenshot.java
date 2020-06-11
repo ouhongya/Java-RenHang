@@ -1,11 +1,10 @@
-package com.renhang.core.apicall.xianwantask.pojo.TryApiAdInfoRes;
+package com.renhang.core.apicall.xianwantask.pojo;
 
 import lombok.Data;
-
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class TryApiSubmitTaskList {
+public class TryApiScreenshot {
     //渠道id （由闲玩分配）
     private String appid;
     //渠道用户编号(app中 用户ID)唯一且不变
@@ -20,10 +19,8 @@ public class TryApiSubmitTaskList {
     private String androidosv;
     //加密校验 MD5(appid+deviceid+msaoaid+androidosv+ptype+appsign+appsecret)
     private String keycode;
-
     //广告ID
-    private Integer adid;
-    //答案列表
-    private List<TryApiSubmitTaskInfo> list;
-
+    private String adid;
+    //文件
+    private MultipartFile file;
 }

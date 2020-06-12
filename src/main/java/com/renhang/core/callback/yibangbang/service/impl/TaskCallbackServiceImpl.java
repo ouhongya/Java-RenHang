@@ -26,12 +26,12 @@ public class TaskCallbackServiceImpl implements TaskCallbackService {
 
     @Autowired
     TaskCallbackMapper taskCallbackMapper;
+
     /**
      * 任务墙处理
      * @param
      * @return
      */
-
     @Override
     public String TaskCallbackService(ReceiveModel receiveModel) {
         try{

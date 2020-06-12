@@ -8,7 +8,11 @@ public interface KenDeJiOrderCallbackMapper {
 
     void createdOrderEvent(OrderEventVo orderEventVo);
 
+    void updateOrderEvent(OrderEventVo orderEventVo);
+
     void createdOrderKenDeJi(KfcOrderVo orderVo);
+
+    void updateOrderKenDeJi(KfcOrderVo orderVo);
 
     void createdOrderKenDeJiItem(KfcPlaceOrderItemVo KfcPlaceOrderItemVo);
 

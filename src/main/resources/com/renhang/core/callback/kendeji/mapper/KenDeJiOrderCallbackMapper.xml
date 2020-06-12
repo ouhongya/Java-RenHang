@@ -11,6 +11,13 @@
         )
     </insert>
 
+    <update id="updateOrderEvent" parameterType="com.renhang.core.callback.kendeji.pojo.OrderEventVo">
+        update order_kendeji_orderEvent set
+        eventType=#{eventType}, data=#{data}, platformId=#{platform}, platform=#{platform}, sign=#{sign}, cancelReason=#{data.cancelReason}, cancelProducts=#{data.cancelProducts}, refundAmount=#{data.refundAmount}, refundTime=#{data.refundTime}
+        where
+        orderNo = #{orderNo}
+    </update>
+
     <insert id="createdOrderKenDeJi" parameterType="com.renhang.core.callback.kendeji.pojo.KfcOrderVo">
         insert into order_kendeji
          (id, createTime, updateTime, userId, orderNo, status, statusDesc, unitPrice, totalPrice, paymentTime, amount, quantity, drawTime, ticket, userRemark, commissionPrice, userMobile, cancelTime, userName, refundPrice, platformUniqueId, kfcOrderMobileSuffix, kfcOrderMobileRemark, cityName, storeName, storeAddress, eatType)
@@ -20,6 +27,39 @@
         )
     </insert>
 
+    <update id="updateOrderKenDeJi" parameterType="com.renhang.core.callback.kendeji.pojo.KfcOrderVo">
+        update order_kendeji set
+        createTime=#{createdTime},
+         updateTime=#{updateTime},
+         userId=#{userId},
+          orderNo=#{orderNo},
+           status=#{status},
+            statusDesc=#{statusDesc},
+            unitPrice=#{unitPrice},
+             totalPrice=#{totalPrice},
+              paymentTime=#{paymentTime},
+               amount=#{amount},
+                quantity=#{quantity},
+                drawTime=#{drawTime},
+                ticket=#{ticket},
+                 userRemark=#{userRemark},
+                 commissionPrice=#{commissionPrice},
+                  userMobile=#{userMobile},
+                   cancelTime=#{cancelTime},
+                    userName=#{userName},
+                     refundPrice=#{refundPrice},
+                     platformUniqueId=#{platformUniqueId},
+                      kfcOrderMobileSuffix=#{kfcOrderMobileSuffix},
+                       kfcOrderMobileRemark=#{kfcOrderMobileRemark},
+                        cityName=#{kfcPlaceOrder.cityName},
+                         storeName=#{kfcPlaceOrder.storeName},
+                          storeAddress=#{kfcPlaceOrder.storeAddress},
+                           eatType=#{kfcPlaceOrder.eatType}
+                where
+                orderVo =#{orderNo}
+
+    </update>
+
     <insert id="createdOrderKenDeJiItem" parameterType="com.renhang.core.callback.kendeji.pojo.KfcPlaceOrderItemVo">
         insert into order_kendeji_items
         (id, productId, productName, quantity, price, imageUrl, canceled, order_kendejiId, created_time)
@@ -28,6 +68,7 @@
         #{id},#{productId},#{productName},#{quantity},#{price},#{imageUrl},#{canceled},#{order_kendejiId},#{createdTime}
         )
     </insert>
+
 
     <select id="queryKftRefundTime" resultType="java.lang.Integer">
         select ifnull(sum(order_kendeji_orderEvent.id),0) from order_kendeji_orderEvent where refundTime = #{perams}

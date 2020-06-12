@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface XiaoJuOrderCallbackService {
 
-    QueryResponseVo notifyOrderInfo( QueryResponseVo queryResponseVo);
+    QueryResponseVo notifyOrderInfo( QueryResponseVo queryResponseVo) throws Exception;
 
     QueryResponseVo notifyCheckUserInfo( QueryResponseVo queryResponseVo);
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.renhang.core.callback.xiecheng.mapper.XieChengOrderCalBackMapper">
+    <insert id="createdXieChengOrder" parameterType="com.renhang.core.callback.xiecheng.pojo.XieChenOrderCallbackVo">
+        insert  into order_xiecheng (
+        id, AllianceId, SID, OUID, OrderId, OrderStatus, OrderDescription, Amount, PayAmount, PayCurrency, BookingDate, BizCategory, created_time
+        )
+        values
+        (
+        #{id},#{AllianceId},#{SID},#{OUID},#{orderId},#{orderStatus},#{orderDescription},#{Amount},#{PayAmount},#{PayCurrency},#{BookingDate},#{BizCategory},#{createdTime}
+        )
+    </insert>
+
+    <insert id="createdXieChengOrderItem" parameterType="com.renhang.core.callback.xiecheng.pojo.ItemInfos">
+        insert into order_xiecheng_item
+        (
+        id, ordername, startdatetime, enddatetime, statusupdatetime, OrderId, created_time
+        ) VALUES
+        (
+        #{id},#{ordername},#{startdatetime},#{enddatetime},#{startdatetime},#{orderId},#{createdTime}
+        )
+    </insert>
+
+    <select id="queryOrderToOrderId" resultType="com.renhang.core.callback.xiecheng.pojo.XieChenOrderCallbackVo">
+        select * from order_xiecheng,order_xiecheng_item where order_xiecheng.OrderId=order_xiecheng_item.OrderId and order_xiecheng.OrderId=#{ordernum}
+    </select>
+
+    <update id="updateOrder" parameterType="com.renhang.core.callback.xiecheng.pojo.ItemInfos">
+        update order_xiecheng set
+        AllianceId=#{AllianceId},
+        SID=#{SID},
+        OUID=#{OUID},
+        OrderId=#{orderId},
+        OrderStatus=#{orderStatus},
+        OrderDescription=#{orderDescription},
+        Amount=#{Amount},
+        PayAmount=#{payAmount},
+        PayCurrency=#{payCurrency},
+        BookingDate=#{bookingDate},
+        BizCategory=#{BizCategory}
+        WHERE
+        OrderId=#{orderId}
+    </update>
+    <update id="updateOrderItem" parameterType="com.renhang.core.callback.xiecheng.pojo.ItemInfos">
+        update order_xiecheng_item set
+        ordername=#{ordername}, startdatetime=#{startdatetime}, enddatetime=#{enddatetime}, statusupdatetime=#{startdatetime}
+        where
+        OrderId=#{orderId}
+    </update>
+</mapper>

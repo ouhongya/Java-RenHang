@@ -18,6 +18,8 @@ public class GlobalUtils {
 
     public static SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+
     /**
      * 时间格式化
      * @param date
@@ -28,6 +30,9 @@ public class GlobalUtils {
         return sf.format(time);
     }
 
+    public static String format(){
+        return simpleDateFormat.format(new Date());
+    }
     /**
      * 拼接签名需要的字符串
      * @param map

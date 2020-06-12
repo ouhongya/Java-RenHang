@@ -1,21 +1,18 @@
 package com.renhang.core.apicall.xiaoju.service;
 
-import com.renhang.core.apicall.xiaoju.pojo.QueryEnergyUrlVo;
-import com.renhang.core.apicall.xiaoju.pojo.QueryOrderInfoVo;
-import com.renhang.core.apicall.xiaoju.pojo.QueryOrderListVo;
-import com.renhang.core.apicall.xiaoju.pojo.QueryStoreListData;
+import com.renhang.core.apicall.xiaoju.pojo.*;
 
 public interface XiaoJuService {
 
-    String queryToken();
+    String queryToken() throws Exception;
 
-    QueryStoreListData queryStoreList();
+    QueryStoreListData queryStoreList(Integer pageIndex,Integer pageSize) throws Exception;
 
-    QueryStoreListData queryStorePrice();
+    QueryStorePriceData queryStorePrice(String lon,String lat,String openChannel,String itemName,String[] storeIdLists) throws Exception;
 
-    QueryOrderInfoVo queryOrderInfo();
+    QueryOrderInfoVo queryOrderInfo(String orderId) throws Exception;
 
-    QueryEnergyUrlVo queryEnergyUrl();
+    QueryEnergyUrlVo queryEnergyUrl(String lon,String lat,String mobile,String outUserId,String storeId,String itemName) throws Exception;
 
-    QueryOrderListVo queryOrderList();
+    QueryOrderListVo queryOrderList(Integer pageIndex,Integer pageSize,String queryEndTime,String queryStartTime) throws Exception;
 }

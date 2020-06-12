@@ -1,6 +1,5 @@
 package com.renhang.core.callback.xianyu.controller;
 
-import com.renhang.core.apicall.xianyu.service.XianYuService;
 import com.renhang.core.callback.xianyu.service.XianYuOrderCallbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

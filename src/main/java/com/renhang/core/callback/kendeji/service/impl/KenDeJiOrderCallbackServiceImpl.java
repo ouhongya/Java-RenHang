@@ -49,8 +49,17 @@ public class KenDeJiOrderCallbackServiceImpl implements KenDeJiOrderCallbackServ
         if(orderEventVo.getData().getRefundTime()!=null){
             Integer num = kenDeJiOrderCallbackMapper.queryKftRefundTime(orderEventVo.getData().getRefundTime());
             if(num>0){
-                log.error("退款请求重复了");
-                log.error(GlobalUtils.format(new Date()));
+                //修改订单状态
+                kenDeJiOrderCallbackMapper.updateOrderEvent(orderEventVo);
+                //获取订单信息,修改订单状态
+                final KfcOrder orderVo = getByOrderNo(orderEventVo.getOrderNo());
+                if (orderVo == null) {
+                    log.error("获取肯德基订单错误");
+                    log.error(GlobalUtils.format(new Date()));
+                    return "error";
+                }
+                KfcOrderVo order = orderVo.getData();
+                kenDeJiOrderCallbackMapper.createdOrderKenDeJi(order);
                 return "success";
             }
         }

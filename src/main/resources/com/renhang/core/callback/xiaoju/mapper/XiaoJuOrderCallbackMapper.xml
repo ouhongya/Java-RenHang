@@ -2,4 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.renhang.core.callback.xiaoju.mapper.XiaoJuOrderCallbackMapper">
 
+    <insert id="createdOrderXiaoJu" parameterType="com.renhang.core.callback.xiaoju.pojo.OrderDetail">
+        insert into order_xiaoju(
+        id, outUserId, orderId, storeId, storeName, cityName, gunNo, itemName, quantity, totalMoney, realMoney, payStatus, payTime, refundStatus, refundTime, createdTime
+        ) VALUES
+        (
+        #{id},#{outUserId},#{orderId},#{storeId},#{storeName},#{cityName},#{gunNo},#{itemName},#{quantity},#{totalMoney},#{realMoney},#{payStatus},#{payTime},#{refundStatus},#{refundTime},#{createdTime}
+        )
+    </insert>
+    <update id="updateXiaoJuOrder" parameterType="com.renhang.core.callback.xiaoju.pojo.OrderDetail">
+        update order_xiaoju set
+        outUserId =#{outUserId},
+        storeId = #{storeId},
+        storeName=#{storeName},
+        cityName=#{cityName},
+        gunNo = #{gunNo},
+        itemName=#{itemName},
+        quantity=#{quantity},
+        totalMoney=#{totalMoney},
+        realMoney=#{realMoney},
+        payStatus=#{payStatus},
+        payTime=#{payTime},
+        refundStatus=#{refundStatus},
+        refundTime=#{refundTime}
+        where
+        orderId = #{orderId}
+    </update>
+
+    <select id="queryOrderXiaoJuToOrderId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select ifnull(count(order_xiaoju.id),0) from order_xiaoju where orderId = #{orderId}
+    </select>
 </mapper>

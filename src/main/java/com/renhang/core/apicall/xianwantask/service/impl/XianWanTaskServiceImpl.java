@@ -3,7 +3,6 @@ package com.renhang.core.apicall.xianwantask.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.renhang.common.Utils.HttpClientUtils;
 import com.renhang.common.Utils.MD5;
-import com.renhang.core.apicall.xianwantask.mapper.XianWanTaskMapper;
 
 import com.renhang.core.apicall.xianwantask.pojo.*;
 import com.renhang.core.apicall.xianwantask.service.XianWanTaskService;
@@ -18,8 +17,6 @@ import java.util.Map;
 @Service
 public class XianWanTaskServiceImpl implements XianWanTaskService {
 
-    @Autowired
-    XianWanTaskMapper mtUserMapper;
 
     @Value("${XWAndroidTask.appsecret}")
     private String XWAndroidTaskAppsecret;

@@ -30,12 +30,12 @@ public class OrderEventVo {
     /**
      * 事件类型
      */
-    private Integer eventType;
+    private String eventType;
 
     /**
      * 平台id
      */
-    private Integer platformId;
+    private String platformId;
 
     /**
      * 平台 固定为 qianzhu
@@ -52,10 +52,7 @@ public class OrderEventVo {
      */
     private OrderEventData data;
 
-    @Getter
-    @Setter
-    @Accessors(chain = true)
-    @ToString
+    @Data
     public static class OrderEventData{
 
         /**
@@ -71,7 +68,7 @@ public class OrderEventVo {
         /**
          * 退款金额
          */
-        private BigDecimal  refundAmount;
+        private String  refundAmount;
 
         /**
          * 退款时间

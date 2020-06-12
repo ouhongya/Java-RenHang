@@ -46,53 +46,26 @@ public class KenDeJiOrderCallbackServiceImpl implements KenDeJiOrderCallbackServ
         }
         // 校验签名
         checkSign(orderEventVo);
-        if(orderEventVo.getData().getRefundTime()!=null){
-            Integer num = kenDeJiOrderCallbackMapper.queryKftRefundTime(orderEventVo.getData().getRefundTime());
-            if(num>0){
-                //修改订单状态
-                kenDeJiOrderCallbackMapper.updateOrderEvent(orderEventVo);
-                //获取订单信息,修改订单状态
-                final KfcOrder orderVo = getByOrderNo(orderEventVo.getOrderNo());
-                if (orderVo == null) {
-                    log.error("获取肯德基订单错误");
-                    log.error(GlobalUtils.format(new Date()));
-                    return "error";
-                }
-                KfcOrderVo order = orderVo.getData();
-                kenDeJiOrderCallbackMapper.createdOrderKenDeJi(order);
-                return "success";
-            }
-        }
-        switch (orderEventVo.getEventType()) {
-            // 部分取消
-            case -3:
-                // todo 发送部分取消的通知给用户
-                break;
-            // 全部取消
-            case -5:
-                // todo 发送取消的通知给用户
-                break;
-            // 完成
-            case 10:
-                // todo 发送已出票的通知给用户
-                break;
-            // 非法事件
-            default:
-                log.error("肯德基订单消息不合法");
-                log.error(GlobalUtils.format(new Date()));
-                return "error";
-        }
-        //存入数据库
-        orderEventVo.setId(GlobalUtils.uuid());
-        orderEventVo.setCreatedTime(new Date());
-        kenDeJiOrderCallbackMapper.createdOrderEvent(orderEventVo);
+
         //获取订单信息,存入订单
         final KfcOrder orderVo = getByOrderNo(orderEventVo.getOrderNo());
         if (orderVo == null) {
             log.error("获取肯德基订单错误");
             log.error(GlobalUtils.format(new Date()));
+
             return "error";
         }
+        if(orderEventVo.getData().getRefundTime()!=null){
+            Integer num = kenDeJiOrderCallbackMapper.queryKftRefundTime(orderEventVo.getOrderNo());
+            if(num>0){
+                kenDeJiOrderCallbackMapper.updateOrderKenDeJi(orderVo.getData());
+                return "success";
+            }
+        }
+        //存入数据库
+        orderEventVo.setId(GlobalUtils.uuid());
+        orderEventVo.setCreatedTime(new Date());
+        kenDeJiOrderCallbackMapper.createdOrderEvent(orderEventVo);
         KfcOrderVo order = orderVo.getData();
         order.setId(GlobalUtils.uuid());
         order.setCreatedTime(new Date());
@@ -102,9 +75,35 @@ public class KenDeJiOrderCallbackServiceImpl implements KenDeJiOrderCallbackServ
         for (KfcPlaceOrderItemVo itemVo : items) {
             itemVo.setId(order.getId());
             itemVo.setCreatedTime(new Date());
+            if(itemVo.getCanceled()){
+                itemVo.setStatus("0");
+            }else{
+                itemVo.setStatus("1");
+            }
             kenDeJiOrderCallbackMapper.createdOrderKenDeJiItem(itemVo);
         }
-        return "success";
+        switch (orderEventVo.getEventType()) {
+            // 部分取消
+            case "-3":
+                //创建订单
+                kenDeJiOrderCallbackMapper.updateOrderKenDeJi(order);
+                return "success";
+            // 全部取消
+            case "-5":
+                //创建订单
+                kenDeJiOrderCallbackMapper.updateOrderKenDeJi(order);
+                return "success";
+            // 完成
+            case "10":
+                //创建订单
+                kenDeJiOrderCallbackMapper.createdOrderKenDeJi(order);
+                return "success";
+            // 非法事件
+            default:
+                log.error("肯德基订单消息不合法");
+                log.error(GlobalUtils.format(new Date()));
+                return "error";
+        }
     }
 
 

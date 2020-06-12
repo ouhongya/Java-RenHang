@@ -4,16 +4,16 @@
 
     <insert id="createdOrderEvent" parameterType="com.renhang.core.callback.kendeji.pojo.OrderEventVo">
         insert into order_kendeji_orderEvent
-        (id, orderNo, eventType, data, platformId, platform, sign, cancelReason, cancelProducts, refundAmount, refundTime, created_Time)
+        (id, orderNo, eventType, platformId, platform, sign, cancelReason, cancelProducts, refundAmount, refundTime, created_Time)
          VALUES
         (
-        #{id},#{orderNo},#{eventType},#{platformId},#{platform},#{sign},#{data.cancelProducts},#{data.refundAmount},#{data.refundTime},#{createdTime}
+        #{orderEventVo.id},#{orderEventVo.orderNo},#{orderEventVo.eventType},#{orderEventVo.platformId},#{orderEventVo.platform},#{orderEventVo.sign},#{orderEventVo.data.cancelReason},#{orderEventVo.data.cancelProducts},#{orderEventVo.data.refundAmount},#{orderEventVo.data.refundTime},#{orderEventVo.createdTime}
         )
     </insert>
 
     <update id="updateOrderEvent" parameterType="com.renhang.core.callback.kendeji.pojo.OrderEventVo">
         update order_kendeji_orderEvent set
-        eventType=#{eventType}, data=#{data}, platformId=#{platform}, platform=#{platform}, sign=#{sign}, cancelReason=#{data.cancelReason}, cancelProducts=#{data.cancelProducts}, refundAmount=#{data.refundAmount}, refundTime=#{data.refundTime}
+        eventType=#{eventType}, platformId=#{platform}, platform=#{platform}, sign=#{sign}, cancelReason=#{data.cancelReason}, cancelProducts=#{data.cancelProducts}, refundAmount=#{data.refundAmount}, refundTime=#{data.refundTime}
         where
         orderNo = #{orderNo}
     </update>
@@ -56,7 +56,7 @@
                           storeAddress=#{kfcPlaceOrder.storeAddress},
                            eatType=#{kfcPlaceOrder.eatType}
                 where
-                orderVo =#{orderNo}
+                orderNo =#{orderNo}
 
     </update>
 
@@ -65,12 +65,12 @@
         (id, productId, productName, quantity, price, imageUrl, canceled, order_kendejiId, created_time)
         values
         (
-        #{id},#{productId},#{productName},#{quantity},#{price},#{imageUrl},#{canceled},#{order_kendejiId},#{createdTime}
+        #{id},#{productId},#{productName},#{quantity},#{price},#{imageUrl},#{status},#{order_kendejiId},#{createdTime}
         )
     </insert>
 
 
     <select id="queryKftRefundTime" resultType="java.lang.Integer">
-        select ifnull(sum(order_kendeji_orderEvent.id),0) from order_kendeji_orderEvent where refundTime = #{perams}
+        select ifnull(count(order_kendeji.id),0) from order_kendeji where orderNo = #{perams}
     </select>
 </mapper>

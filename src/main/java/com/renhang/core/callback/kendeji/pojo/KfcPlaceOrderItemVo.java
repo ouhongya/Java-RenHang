@@ -62,4 +62,9 @@ public class KfcPlaceOrderItemVo implements Serializable {
      * 是否已取消
      */
     private Boolean canceled;
+
+    /**
+     * 1没取消,2取消
+     */
+    private String status;
 }

@@ -20,6 +20,11 @@ public class KenDeJiOrderCallbackController {
     @Autowired
     KenDeJiOrderCallbackService kenDeJiOrderCallbackService;
 
+    /**
+     * 肯德基的订单回调
+     * @param orderEventVo
+     * @return
+     */
     @PostMapping("/order/notify")
     public String KenDeJiOrderCallback(@RequestBody OrderEventVo orderEventVo) {
         String response = "";

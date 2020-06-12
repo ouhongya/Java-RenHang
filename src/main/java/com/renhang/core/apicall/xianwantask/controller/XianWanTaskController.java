@@ -64,7 +64,7 @@ public class XianWanTaskController {
      * @return
      */
     @PostMapping("/try_api_commit")
-    public LinkTask try_api_adClick(TryApiAdClick tryApiAdClick){
+    public LinkTask try_api_adClick(@RequestBody  TryApiAdClick tryApiAdClick){
         LinkTask tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiAdClick(tryApiAdClick);
@@ -83,7 +83,7 @@ public class XianWanTaskController {
      * @return
      */
     @PostMapping("/try_api_submitTask")
-    public SubmitTaskResponse try_api_submitTask(TryApiSubmitTask tryapisubmittask){
+    public SubmitTaskResponse try_api_submitTask(@RequestBody  TryApiSubmitTask tryapisubmittask){
         SubmitTaskResponse tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitTask(tryapisubmittask);
@@ -103,7 +103,7 @@ public class XianWanTaskController {
      * @return
      */
     @PostMapping("/try_api_submitTaskList")
-    public SubmitTaskResponse try_api_submitTaskList(TryApiSubmitTaskList tryapisubmittasklist){
+    public SubmitTaskResponse try_api_submitTaskList(@RequestBody  TryApiSubmitTaskList tryapisubmittasklist){
         SubmitTaskResponse tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitTaskList(tryapisubmittasklist);
@@ -122,7 +122,7 @@ public class XianWanTaskController {
      * @return
      */
     @GetMapping("/try_api_submitRecommend")
-    public SubmitTaskResponse try_api_submitRecommend(TryApiAdClick tryapiadclick){
+    public SubmitTaskResponse try_api_submitRecommend(@RequestBody TryApiAdClick tryapiadclick){
         SubmitTaskResponse tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitRecommend(tryapiadclick);
@@ -143,7 +143,7 @@ public class XianWanTaskController {
      * @return
      */
     @PostMapping("/try_api_uploadScreenshot")
-    public SubmitTaskScreenshot try_api_uploadScreenshot(TryApiScreenshot tryapiscreenshot){
+    public SubmitTaskScreenshot try_api_uploadScreenshot(@RequestBody TryApiScreenshot tryapiscreenshot){
         SubmitTaskScreenshot tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitScreenshot(tryapiscreenshot);
@@ -165,7 +165,7 @@ public class XianWanTaskController {
      * @return
      */
     @PostMapping("/try_api_uploadScreenshotbase")
-    public SubmitTaskScreenshot try_api_uploadScreenshotbase(TryApiScreenshotbase tryapiscreenshotbase){
+    public SubmitTaskScreenshot try_api_uploadScreenshotbase(@RequestBody TryApiScreenshotbase tryapiscreenshotbase){
         SubmitTaskScreenshot tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitScreenshotbase(tryapiscreenshotbase);
@@ -184,7 +184,7 @@ public class XianWanTaskController {
      * @return
      */
     @PostMapping("/try_api_uploadSignature")
-    public SubmitTaskSignature try_api_uploadSignature(TryApiSignature  tryapisignature){
+    public SubmitTaskSignature try_api_uploadSignature(@RequestBody TryApiSignature  tryapisignature){
         SubmitTaskSignature tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitSignature(tryapisignature);

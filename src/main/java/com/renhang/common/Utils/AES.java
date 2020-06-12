@@ -48,7 +48,7 @@ public class AES {
     /**
      * 密码处理方法
      */
-    private static byte[] pwdHandler(String password) throws Exception{
+    public static byte[] pwdHandler(String password) throws Exception{
         byte[] data = null;
         if (password == null) {
             password = "";
@@ -78,6 +78,13 @@ public class AES {
     }
     public static void main(String[] args) {
         String test = encryptHex("10001555510603", "");
+        try {
+            byte[] bytes = pwdHandler("10001555510603");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         System.out.println(test);
     }
 

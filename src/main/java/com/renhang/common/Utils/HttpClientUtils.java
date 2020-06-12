@@ -36,7 +36,10 @@ public class HttpClientUtils {
             URIBuilder builder = new URIBuilder(url);
             if (param != null) {
                 for (String key : param.keySet()) {
-                    builder.addParameter(key, param.get(key).toString());
+                    if(param.get(key)!=null){
+                        builder.addParameter(key, param.get(key).toString());
+                    }
+
                 }
             }
             URI uri = builder.build();

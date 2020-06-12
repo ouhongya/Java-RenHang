@@ -1,19 +1,13 @@
 package com.renhang.core.apicall.yibangbang.service.impl;
 
 
-import com.renhang.common.Utils.HttpClientUtils;
 import com.renhang.common.Utils.MD5;
-import com.renhang.core.apicall.yibangbang.pojo.TaskEntry;
 import com.renhang.core.apicall.yibangbang.pojo.UserVo;
 import com.renhang.core.apicall.yibangbang.service.YiBangBangService;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
-
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

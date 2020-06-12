@@ -59,3 +59,8 @@ xiecheng:
   AID: 1245771
   SID: 3004697
   KEY: 112233
+#美团
+meituan:
+  utmSource: 2128
+  utmSecret: 5AVAkz5WkEKbWpty
+  activity: sCHztFj82w

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ItemInfoListVo {
+
     private String storeId;
     private String itemName;
     //挂牌价，单位是分

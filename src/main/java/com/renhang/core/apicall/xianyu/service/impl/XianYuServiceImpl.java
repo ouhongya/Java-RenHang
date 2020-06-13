@@ -53,10 +53,10 @@ public class XianYuServiceImpl implements XianYuService {
      * @return
      */
     @Override
-    public ApigaoeListRes apigaoeList() {
+    public ApigaoeListRes apigaoeList(String token) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/list";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
+        String headerVal ="ssp_api_token="+token;
         String res = HttpClientUtils.doGet(url,headerKey,headerVal);
         ApigaoeListRes apigaoeListRes = JSONObject.parseObject(res, ApigaoeListRes.class);
         return apigaoeListRes;
@@ -64,14 +64,14 @@ public class XianYuServiceImpl implements XianYuService {
 
     /**
      *获取截图详细信息
-     * @param id
+     * @param token
      * @return
      */
     @Override
-    public ApigaoeDetailRes apigaoeDetail(String id) {
+    public ApigaoeDetailRes apigaoeDetail(String id,String token) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/detail";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
+        String headerVal ="ssp_api_token="+token;
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         String res = HttpClientUtils.doGet(url,map,headerKey,headerVal);
@@ -85,10 +85,10 @@ public class XianYuServiceImpl implements XianYuService {
      * @return
      */
     @Override
-    public ApigaoeVo apigaoeApply(String id) {
+    public ApigaoeVo apigaoeApply(String id,String token) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/apply";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
+        String headerVal ="ssp_api_token="+token;
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         String res = HttpClientUtils.doGet(url,map,headerKey,headerVal);
@@ -102,10 +102,10 @@ public class XianYuServiceImpl implements XianYuService {
      * @return
      */
     @Override
-    public ApigaoeVo apigaoeCancel(String id) {
+    public ApigaoeVo apigaoeCancel(String id,String token) {
         String url = "http://xyzqdsp.niaogebiji.com/sspmdl/apigaoe/cancel";
         String headerKey ="Cookie";
-        String headerVal ="ssp_api_token="+"eyJwdWJsaXNoIjoxNTkxNjg3OTI2LCJleHBpcmUiOjE1OTE3MzExMjYsImF1dGgiOiJkaXlNRDUifQ%3D%3D.eyJ1c2VyIjp7InBob25lIjoxLCJkZXZpY2UiOiI4NjQ4MDQwMzE2MTg3OTYiLCJkZXZpY2UyIjoiIiwibWVkaWFfaWQiOjQ1OCwicmVndGltZSI6MTU5MTY4NzkyNiwidXNlcl9pZCI6OTg3NjU0MzIxLCJwcm9wZXJ0eSI6MCwidmVyc2lvbiI6MSwiaWQiOiI1MDQ1NjUwIn0sIm1lZGlhIjp7ImlkIjo0NTgsInR5cGUiOiIzIiwiam9pbl90eXBlIjoxLCJ0YXNrX3R5cGUiOiIxMiIsIndpdGhkcmF3X3R5cGUiOiIyIiwiZXhjaGFuZ2VfcmF0ZSI6IjEiLCJjdXJyZW5jeV91bml0IjoiXHU1MTQzIn19.d9fa3cb10b81fa1e4fee5242c12525bc";
+        String headerVal ="ssp_api_token="+token;
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         String res = HttpClientUtils.doGet(url,map,headerKey,headerVal);
@@ -129,7 +129,7 @@ public class XianYuServiceImpl implements XianYuService {
         map.put("realName",verifyVo.getRealName());
         map.put("others",verifyVo.getOthers());
         String headerKey = "Cookie";
-        String headerVal = "ssp_api_token="+"eyJwdWJsaXNoIjoxNTY1NzU1MTEyLCJleHBpcmUiOjE1NjU3OTgzMTIsImF1dGgiOiJkaXlITUFDIn0";
+        String headerVal = "ssp_api_token="+verifyVo.getToken();
         String res = HttpClientUtils.doPost(url, map, headerKey, headerVal);
         ApigaoeVo apigaoeVo = JSONObject.parseObject(res, ApigaoeVo.class);
         return apigaoeVo;

@@ -24,9 +24,9 @@ public class KenDeJiController {
 
     /**
      * 注册登录并跳转接口(没有手机号码)
-     * @param platformUniqueId
-     * @param nickname
-     * @param redirectUrl
+     * @param platformUniqueId 是	string	用户唯一标识
+     * @param nickname 是	string	用户昵称
+     * @param redirectUrl 否	string	重定向地址（不用填，备用，但需要参与签名）
      * @return
      */
     @GetMapping("/api/v2/platform/login")
@@ -45,10 +45,10 @@ public class KenDeJiController {
 
     /**
      * 注册登录并跳转接口(有手机号码)
-     * @param platformUniqueId
-     * @param nickname
-     * @param mobile
-     * @param redirectUrl
+     * @param platformUniqueId platformUniqueId	是	string	用户唯一标识
+     * @param nickname nickname	是	string	用户昵称
+     * @param mobile mobile	是	string	手机号码
+     * @param redirectUrl redirectUrl	否	string	重定向地址（不用填，备用,但需要参与签名）
      * @return
      */
     @GetMapping("/api/v3/platform/login")
@@ -67,7 +67,7 @@ public class KenDeJiController {
 
     /**
      * 根据订单号查询订单
-     * @param orderNo
+     * @param orderNo orderNo	是	string	订单号
      * @return
      */
     @GetMapping("/openApi/v1/kfcOrders/getByOrderNo")
@@ -86,7 +86,7 @@ public class KenDeJiController {
 
     /**
      * 根据批量订单号查询订单
-     * @param orderNo
+     * @param orderNo	是	string	批量订单号, 用英文,号分割
      * @return
      */
     @GetMapping("/openApi/v1/kfcOrders/listByBatchOrderNos")
@@ -124,8 +124,8 @@ public class KenDeJiController {
 
     /**
      * 注册登录接口(没有手机号)
-     * @param platformUniqueId
-     * @param nickname
+     * @param platformUniqueId 	是	string	用户唯一标识
+     * @param nickname 是	string	用户昵称
      * @return
      */
     @GetMapping("/api/v1/platform/getToken")
@@ -144,9 +144,9 @@ public class KenDeJiController {
 
     /**
      * 注册登录接口(有手机号)
-     * @param platformUniqueId
-     * @param nickname
-     * @param mobile
+     * @param platformUniqueId 是	string	用户唯一标识
+     * @param nickname 是	string	用户昵称
+     * @param mobile 是	string	手机号码
      * @return
      */
     @GetMapping("/api/v2/platform/getToken")

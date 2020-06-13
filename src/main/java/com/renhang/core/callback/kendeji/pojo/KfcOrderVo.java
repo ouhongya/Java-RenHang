@@ -21,8 +21,13 @@ import java.util.Date;
 @ToString
 public class KfcOrderVo implements Serializable {
 
+    /**
+     * 主键
+     */
     private String id;
-
+    /**
+     * 创建时间
+     */
     private Date createdTime;
 
     /**

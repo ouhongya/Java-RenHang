@@ -45,10 +45,10 @@ public class XianYuController {
      * @return
      */
     @GetMapping("/apigaoe/list")
-    public ApigaoeListRes apigaoeList() {
+    public ApigaoeListRes apigaoeList(String token) {
         ApigaoeListRes apigaoeListRes = null;
         try {
-            apigaoeListRes =  xiaoZhuoZhuanQianService.apigaoeList();
+            apigaoeListRes =  xiaoZhuoZhuanQianService.apigaoeList(token);
         } catch (Exception e) {
             log.error(e);
             log.error("获取截图投放列表出错了\n");
@@ -64,10 +64,10 @@ public class XianYuController {
      * @return
      */
     @GetMapping("/apigaoe/detail")
-    public ApigaoeDetailRes apigaoeDetailRes(String id) {
+    public ApigaoeDetailRes apigaoeDetailRes(String id,String token) {
         ApigaoeDetailRes apigaoeDetailRes = null;
         try {
-            apigaoeDetailRes =  xiaoZhuoZhuanQianService.apigaoeDetail(id);
+            apigaoeDetailRes =  xiaoZhuoZhuanQianService.apigaoeDetail(id,token);
         } catch (Exception e) {
             log.error(e);
             log.error("获取截图详细信息出错了\n");
@@ -83,10 +83,10 @@ public class XianYuController {
      * @return
      */
     @GetMapping("/apigaoe/apply")
-    public ApigaoeVo apigaoeApply(String id) {
+    public ApigaoeVo apigaoeApply(String id,String token) {
         ApigaoeVo apigaoeVo = null;
         try {
-            apigaoeVo =  xiaoZhuoZhuanQianService.apigaoeApply(id);
+            apigaoeVo =  xiaoZhuoZhuanQianService.apigaoeApply(id,token);
         } catch (Exception e) {
             log.error(e);
             log.error("请求领取任务出错了\n");
@@ -102,10 +102,10 @@ public class XianYuController {
      * @return
      */
     @GetMapping("/apigaoe/cancel")
-    public ApigaoeVo apigaoeCancel(String id) {
+    public ApigaoeVo apigaoeCancel(String id,String token) {
         ApigaoeVo apigaoeVo = null;
         try {
-            apigaoeVo =  xiaoZhuoZhuanQianService.apigaoeCancel(id);
+            apigaoeVo =  xiaoZhuoZhuanQianService.apigaoeCancel(id,token);
         } catch (Exception e) {
             log.error(e);
             log.error("请求释放任务出错了\n");

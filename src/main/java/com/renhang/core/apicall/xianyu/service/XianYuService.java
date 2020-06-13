@@ -10,13 +10,13 @@ public interface XianYuService {
 
     ApigaoeVo getToken(TokenVo tokenVo);
 
-    ApigaoeListRes apigaoeList();
+    ApigaoeListRes apigaoeList(String token);
 
-    ApigaoeDetailRes apigaoeDetail(String id);
+    ApigaoeDetailRes apigaoeDetail(String id,String token);
 
-    ApigaoeVo apigaoeApply(String id);
+    ApigaoeVo apigaoeApply(String id,String token);
 
-    ApigaoeVo apigaoeCancel(String id);
+    ApigaoeVo apigaoeCancel(String id,String token);
 
     ApigaoeVo apigaoeVerify(VerifyVo verifyVo);
 

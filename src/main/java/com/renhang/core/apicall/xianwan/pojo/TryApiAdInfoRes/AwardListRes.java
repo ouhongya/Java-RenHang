@@ -6,5 +6,8 @@ import java.util.List;
 
 @Data
 public class AwardListRes {
+    /**
+     * 奖励分组坐标
+     */
     private List<AwardRes> award;
 }

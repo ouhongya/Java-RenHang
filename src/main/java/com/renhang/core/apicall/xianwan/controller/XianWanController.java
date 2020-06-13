@@ -53,14 +53,14 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/myActionAdList")
-    public MyActionAdListVoRes myActionAdList(@RequestBody MyActionAdListVo myActionAdListVo) {
+    public MyActionAdListVoRes myActionAdList( MyActionAdListVo myActionAdListVo) {
         MyActionAdListVoRes myActionAdListVoRes = null;
         try {
             myActionAdListVoRes = mtUserService.myActionAdList(myActionAdListVo);
             return myActionAdListVoRes;
         }catch (Exception e){
             log.error(e);
-            log.error("获取广告列表\n");
+            log.error("获取我广告列表异常了\n");
             log.error(GlobalUtils.format(new Date()));
             return myActionAdListVoRes;
         }

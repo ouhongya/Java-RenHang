@@ -24,9 +24,9 @@ import java.util.Map;
 public class XianWanServiceImpl implements XianWanService {
 
 
-    @Value(value = "${XWAndroid.appsecret}")
+    @Value("${XWAndroid.appsecret}")
     private String XWAndroidAppsecret;
-    @Value("${XWAndroid.appId}")
+    @Value("${XWAndroid.appid}")
     private String XWAndroidAppid;
 
 
@@ -97,15 +97,15 @@ public class XianWanServiceImpl implements XianWanService {
         String url = "https://h5.17xianwan.com/adwall/api/myActionAdList";
         Map<String, Object> map = new HashMap<String, Object>();
         //手机设备号
-        String deviceid = myActionAdListVo.getDeviceid().isEmpty()?"0":myActionAdListVo.getDeviceid();
+        String deviceid = myActionAdListVo.getDeviceid()==null?"0":myActionAdListVo.getDeviceid();
         //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-        String androidosv = myActionAdListVo.getAndroidosv().isEmpty()?"0":myActionAdListVo.getAndroidosv();
+        String androidosv = myActionAdListVo.getAndroidosv()==null?"0":myActionAdListVo.getAndroidosv();
         //拉取类型
-        String adtype = myActionAdListVo.getAdtype().isEmpty()?"0": myActionAdListVo.getAdtype();
+        String adtype = myActionAdListVo.getAdtype()==null?"0": myActionAdListVo.getAdtype();
         //当前页面
-        String page = myActionAdListVo.getPage().isEmpty()?"1":myActionAdListVo.getPage();
+        String page = myActionAdListVo.getPage()==null?"1":myActionAdListVo.getPage();
         //每页显示多少
-        String pagesize = myActionAdListVo.getPagesize().isEmpty()?"200":myActionAdListVo.getPagesize();
+        String pagesize = myActionAdListVo.getPagesize()==null?"200":myActionAdListVo.getPagesize();
         //1 iPhone 2 安卓
         map.put("ptype", myActionAdListVo.getPtype());
         map.put("deviceid", deviceid);

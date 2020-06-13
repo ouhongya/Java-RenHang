@@ -3,6 +3,8 @@ package com.renhang.core.apicall.xianwan.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.renhang.common.Utils.HttpClientUtils;
 import com.renhang.common.Utils.MD5;
+import com.renhang.core.apicall.xianwan.pojo.MyActionAdListVo;
+import com.renhang.core.apicall.xianwan.pojo.MyActionAdListVoRes;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdClick.TryApiAdClick;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfo;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfoRes.TryApiAdInfoRes;
@@ -82,6 +84,54 @@ public class XianWanServiceImpl implements XianWanService {
         map.put("pagesize", pagesize);
         String res = HttpClientUtils.doGet(url, map);
         TryApiListRes resBean = JSONObject.parseObject(res, TryApiListRes.class);
+        return resBean;
+    }
+
+    /**
+     * 获取我参与的广告
+     * @param myActionAdListVo
+     * @return
+     */
+    @Override
+    public MyActionAdListVoRes myActionAdList(MyActionAdListVo myActionAdListVo) {
+        String url = "https://h5.17xianwan.com/adwall/api/myActionAdList";
+        Map<String, Object> map = new HashMap<String, Object>();
+        //手机设备号
+        String deviceid = myActionAdListVo.getDeviceid().isEmpty()?"0":myActionAdListVo.getDeviceid();
+        //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
+        String androidosv = myActionAdListVo.getAndroidosv().isEmpty()?"0":myActionAdListVo.getAndroidosv();
+        //拉取类型
+        String adtype = myActionAdListVo.getAdtype().isEmpty()?"0": myActionAdListVo.getAdtype();
+        //当前页面
+        String page = myActionAdListVo.getPage().isEmpty()?"1":myActionAdListVo.getPage();
+        //每页显示多少
+        String pagesize = myActionAdListVo.getPagesize().isEmpty()?"200":myActionAdListVo.getPagesize();
+        //1 iPhone 2 安卓
+        map.put("ptype", myActionAdListVo.getPtype());
+        map.put("deviceid", deviceid);
+        map.put("appsign", myActionAdListVo.getAppsign());
+        String str  = "";
+        if(myActionAdListVo.getPtype().equals("2")){
+            map.put("appid", XWAndroidAppid);
+            map.put("appsecret", XWAndroidAppsecret);
+            //安全联盟
+            map.put("msaoaid", myActionAdListVo.getMsaoaid());
+            map.put("androidosv",androidosv);
+            //appid+deviceid+msaoaid+androidosv+ptype+appsign+appsecret
+            str =XWAndroidAppid + deviceid + myActionAdListVo.getMsaoaid() +androidosv+ myActionAdListVo.getPtype() + myActionAdListVo.getAppsign() +XWAndroidAppsecret;
+        }else{
+            map.put("appid", XWIOSAppid);
+            map.put("appsecret", XWIOSAppsecret);
+            str = XWIOSAppid+ deviceid + myActionAdListVo.getPtype() + myActionAdListVo.getAppsign() +XWIOSAppsecret;
+        }
+        map.put("keycode", MD5.MD5Encode(str, "UTF-8", false));
+        map.put("xwversion",2);
+        map.put("adtype", adtype);
+        map.put("orderby", myActionAdListVo.getOrderby());
+        map.put("page",page);
+        map.put("pagesize", pagesize);
+        String res = HttpClientUtils.doGet(url, map);
+        MyActionAdListVoRes resBean = JSONObject.parseObject(res, MyActionAdListVoRes.class);
         return resBean;
     }
 
@@ -172,4 +222,6 @@ public class XianWanServiceImpl implements XianWanService {
         TryApiAdClickRes resBean = JSONObject.parseObject(res, TryApiAdClickRes.class);
         return resBean;
     }
+
+
 }

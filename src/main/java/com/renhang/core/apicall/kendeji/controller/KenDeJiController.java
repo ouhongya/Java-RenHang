@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
-@RequestMapping("")
+@RequestMapping
 @Log4j2
 public class KenDeJiController {
 

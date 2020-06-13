@@ -1,6 +1,8 @@
 package com.renhang.core.apicall.xianwan.controller;
 
 import com.renhang.common.Utils.GlobalUtils;
+import com.renhang.core.apicall.xianwan.pojo.MyActionAdListVo;
+import com.renhang.core.apicall.xianwan.pojo.MyActionAdListVoRes;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdClick.TryApiAdClick;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfo;
 import com.renhang.core.apicall.xianwan.pojo.TryApiAdInfoRes.TryApiAdInfoRes;
@@ -42,6 +44,25 @@ public class XianWanController {
             log.error("获取广告列表\n");
             log.error(GlobalUtils.format(new Date()));
             return advertising;
+        }
+    }
+
+    /**
+     * 获取我广告列表
+     * @param myActionAdListVo
+     * @return
+     */
+    @GetMapping("/myActionAdList")
+    public MyActionAdListVoRes myActionAdList(@RequestBody MyActionAdListVo myActionAdListVo) {
+        MyActionAdListVoRes myActionAdListVoRes = null;
+        try {
+            myActionAdListVoRes = mtUserService.myActionAdList(myActionAdListVo);
+            return myActionAdListVoRes;
+        }catch (Exception e){
+            log.error(e);
+            log.error("获取广告列表\n");
+            log.error(GlobalUtils.format(new Date()));
+            return myActionAdListVoRes;
         }
     }
 

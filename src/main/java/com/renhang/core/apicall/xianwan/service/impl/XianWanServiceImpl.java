@@ -47,17 +47,17 @@ public class XianWanServiceImpl implements XianWanService {
         String url = "https://h5.17xianwan.com/try/API/try_api_list";
         Map<String, Object> map = new HashMap<String, Object>();
         //手机设备号
-        String deviceid = adListBean.getDeviceid().isEmpty()?"0":adListBean.getDeviceid();
+        String deviceid = adListBean.getDeviceid()==null?"0":adListBean.getDeviceid();
         //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-        String androidosv = adListBean.getAndroidosv().isEmpty()?"0":adListBean.getAndroidosv();
+        String androidosv = adListBean.getAndroidosv()==null?"0":adListBean.getAndroidosv();
         //拉取类型
-        String adtype = adListBean.getAdtype().isEmpty()?"0": adListBean.getAdtype();
+        String adtype = adListBean.getAdtype()==null?"0": adListBean.getAdtype();
         //名称查询
-        String adname =  adListBean.getAdname().isEmpty()?"":adListBean.getAdname();
+        String adname =  adListBean.getAdname()==null?"":adListBean.getAdname();
         //当前页面
-        String page = adListBean.getPage().isEmpty()?"1":adListBean.getPage();
+        String page = adListBean.getPage()==null?"1":adListBean.getPage();
         //每页显示多少
-        String pagesize = adListBean.getPagesize().isEmpty()?"200":adListBean.getPagesize();
+        String pagesize = adListBean.getPagesize()==null?"200":adListBean.getPagesize();
         //1 iPhone 2 安卓
         map.put("ptype", adListBean.getPtype());
         map.put("deviceid", deviceid);
@@ -146,7 +146,7 @@ public class XianWanServiceImpl implements XianWanService {
         Map<String, Object> map = new HashMap<String, Object>();
         String str  = "";
         //设备号是否为空,空就传0
-        String deviceid = tryApiAdInfo.getDeviceid().isEmpty()?"0":tryApiAdInfo.getDeviceid();
+        String deviceid = tryApiAdInfo.getDeviceid()==null?"0":tryApiAdInfo.getDeviceid();
         //广告编号
         map.put("adid", tryApiAdInfo.getAdid());
         //渠道用户id
@@ -155,9 +155,9 @@ public class XianWanServiceImpl implements XianWanService {
         //判断当前是1苹果还是2安卓
         if (tryApiAdInfo.getPtype().equals("2")) {
             //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
-            String msaoaid  = tryApiAdInfo.getMsaoaid().isEmpty() ?"" :  tryApiAdInfo.getMsaoaid();
+            String msaoaid  = tryApiAdInfo.getMsaoaid()==null ?"" :  tryApiAdInfo.getMsaoaid();
             //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-            String androidosv = tryApiAdInfo.getAndroidosv().isEmpty()?"0":tryApiAdInfo.getAndroidosv();
+            String androidosv = tryApiAdInfo.getAndroidosv()==null?"0":tryApiAdInfo.getAndroidosv();
             map.put("appid",XWAndroidAppid);
             map.put("appsecret",XWAndroidAppsecret);
             //IOS 忽略此参数 安卓操作系统版本号 如:29 、28 （android Q 对应 29）
@@ -191,10 +191,10 @@ public class XianWanServiceImpl implements XianWanService {
         Map<String, Object> map = new HashMap<String, Object>();
         String str  = "";
         //设备号是否为空,空就传0
-        String deviceid = tryApiAdClick.getDeviceid().isEmpty()?"0":tryApiAdClick.getDeviceid();
-        String msaoaid  = tryApiAdClick.getMsaoaid().isEmpty() ?"" :  tryApiAdClick.getMsaoaid();
+        String deviceid = tryApiAdClick.getDeviceid()==null?"0":tryApiAdClick.getDeviceid();
+        String msaoaid  = tryApiAdClick.getMsaoaid()==null ?"" :  tryApiAdClick.getMsaoaid();
         //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-        String androidosv = tryApiAdClick.getAndroidosv().isEmpty()?"0":tryApiAdClick.getAndroidosv();
+        String androidosv = tryApiAdClick.getAndroidosv()==null?"0":tryApiAdClick.getAndroidosv();
         //广告编号
         map.put("adid",tryApiAdClick.getAdid());
         //用户操作行为 1：下载

@@ -34,12 +34,12 @@ public class MeiTuanController {
         TryApiListRes advertising = null;
         try {
              advertising = meiTuanService.TryApiList(adListBean);
-
         }catch (Exception e){
             log.error(e);
             log.error("核验订单数据\n");
             log.error(GlobalUtils.format(new Date()));
         }
+
         return advertising;
     }
 

@@ -5,8 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class TryApiScreenshot {
-    //渠道id （由闲玩分配）
-    private String appid;
     //渠道用户编号(app中 用户ID)唯一且不变
     private String appsign;
     //1 iPhone 2 安卓
@@ -17,10 +15,9 @@ public class TryApiScreenshot {
     private String msaoaid;
     //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
     private String androidosv;
-    //加密校验 MD5(appid+deviceid+msaoaid+androidosv+ptype+appsign+appsecret)
-    private String keycode;
     //广告ID
     private String adid;
     //文件
     private MultipartFile file;
+
 }

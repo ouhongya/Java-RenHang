@@ -32,7 +32,7 @@ public class XianwanTaskCallbackController {
         } catch (Exception e) {
             log.error("闲玩订单回调出现问题\n" + e);
             log.error(GlobalUtils.format(new Date()));
-             orderCallbackRes=new XianwanCallbackRes();
+            orderCallbackRes=new XianwanCallbackRes();
             orderCallbackRes.setSuccess(0);
             orderCallbackRes.setMessage("error");
         }

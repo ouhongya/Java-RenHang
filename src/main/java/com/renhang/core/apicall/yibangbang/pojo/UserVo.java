@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class UserVo {
+    //用户手机号
     private String phone;
-    private String channel;
-    private String time;
-    private int area_code;
-    private String signature;
+    //国家区号(大陆手机号可不填写)
+    private Integer area_code;
+
 
 }

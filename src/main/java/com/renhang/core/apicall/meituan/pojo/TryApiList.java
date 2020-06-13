@@ -8,14 +8,14 @@ import java.util.List;
 public class TryApiList {
     //请求Id，媒体⽅⽣成，不超过32位
     private  String requestId;
-    //媒体code，对接时由美团侧⽣成
-    private  String utmSource;
+//    //媒体code，对接时由美团侧⽣成
+//    private  String utmSource;
     //版本,默认：2.0
     private  String version;
-    //鉴权信息
-    private  String accessToken;
-    //时间戳，精确到秒或毫秒
-    private  Long timestamp;
+//    //鉴权信息
+//    private  String accessToken;
+//    //时间戳，精确到秒或毫秒
+//    private  Long timestamp;
 
 
     //订单核验起始⽇期⽀持⽇期与时间格式⽇期：2019-05-08 时间：2019-05-08 00:00:00

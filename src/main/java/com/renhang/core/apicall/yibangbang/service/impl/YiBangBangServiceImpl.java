@@ -25,8 +25,8 @@ public class YiBangBangServiceImpl implements YiBangBangService {
     public String TryApiEntry(UserVo uservo) throws URISyntaxException {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("phone", uservo.getPhone());
-        int areacode=uservo.getArea_code();
-        if(areacode != 0){
+        Integer areacode=uservo.getArea_code();
+        if(areacode != null){
             map.put("area_code", areacode);
         }
         map.put("channel", taskentryname);

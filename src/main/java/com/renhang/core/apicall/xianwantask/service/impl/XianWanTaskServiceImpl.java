@@ -167,7 +167,7 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
             map.put("appid", XWIOSTaskAppid);
             map.put("appsecret", XWIOSTaskAppsecret);
             //字符串拼接
-            str = XWAndroidTaskAppid + deviceid + tryApiAdClick.getPtype() + tryApiAdClick.getAppsign() + tryApiAdClick.getAdid() + XWIOSTaskAppsecret;
+            str = XWIOSTaskAppid + deviceid + tryApiAdClick.getPtype() + tryApiAdClick.getAppsign() + tryApiAdClick.getAdid() + XWIOSTaskAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
         map.put("keycode", encode);
@@ -210,13 +210,11 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
             map.put("appid", XWIOSTaskAppid);
             map.put("appsecret", XWIOSTaskAppsecret);
             //字符串拼接
-            str = XWAndroidTaskAppid + deviceid + tryapisubmittask.getPtype() + tryapisubmittask.getAppsign() + tryapisubmittask.getAdid() + XWIOSTaskAppsecret;
+            str = XWIOSTaskAppid + deviceid + tryapisubmittask.getPtype() + tryapisubmittask.getAppsign() + tryapisubmittask.getAdid() + XWIOSTaskAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
         map.put("keycode", encode);
-//        map.put("xwversion", 2);
         String res = HttpClientUtils.doPost(url, map);
-
         SubmitTaskResponse resBean = JSONObject.parseObject(res, SubmitTaskResponse.class);
         return resBean;
     }
@@ -255,11 +253,10 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
                 map.put("appid", XWIOSTaskAppid);
                 map.put("appsecret", XWIOSTaskAppsecret);
                 //字符串拼接
-                str = XWAndroidTaskAppid + deviceid + tryapisubmittasklist.getPtype() + tryapisubmittasklist.getAppsign() + tryapisubmittaskinfo.getAdid() + XWIOSTaskAppsecret;
+                str = XWIOSTaskAppid + deviceid + tryapisubmittasklist.getPtype() + tryapisubmittasklist.getAppsign() + tryapisubmittaskinfo.getAdid() + XWIOSTaskAppsecret;
             }
             String encode = MD5.MD5Encode(str, "UTF-8", false);
             map.put("keycode", encode);
-           //map.put("xwversion", 2);
             String res = HttpClientUtils.doPost(url, map);
         }
         SubmitTaskResponse resBean = new SubmitTaskResponse();
@@ -298,11 +295,10 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
             map.put("appid", XWIOSTaskAppid);
             map.put("appsecret", XWIOSTaskAppsecret);
             //字符串拼接
-            str = XWAndroidTaskAppid + deviceid + tryapiadclick.getPtype() + tryapiadclick.getAppsign() + tryapiadclick.getAdid() + XWIOSTaskAppsecret;
+            str = XWIOSTaskAppid + deviceid + tryapiadclick.getPtype() + tryapiadclick.getAppsign() + tryapiadclick.getAdid() + XWIOSTaskAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
         map.put("keycode", encode);
-//        map.put("xwversion", 2);
         String res = HttpClientUtils.doPost(url, map);
         SubmitTaskResponse resBean = JSONObject.parseObject(res, SubmitTaskResponse.class);
         return resBean;
@@ -311,7 +307,7 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
     @Override
     public SubmitTaskScreenshot tryApiSubmitScreenshot(TryApiScreenshot tryapiscreenshot) {
         String url = "https://h5.wangzhuantianxia.com/adwall/api/cpa/uploadScreenshot";
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, String> map = new HashMap<String, String>();
         String str = "";
         //设备号是否为空,空就传0
         String deviceid = tryapiscreenshot.getDeviceid().isEmpty() ? "0" : tryapiscreenshot.getDeviceid();
@@ -320,7 +316,7 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
         //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
         String androidosv = tryapiscreenshot.getAndroidosv().isEmpty() ? "0" : tryapiscreenshot.getAndroidosv();
         //广告编号
-        map.put("file", tryapiscreenshot.getFile());
+        map.put("file", tryapiscreenshot.getFile().toString());
         map.put("adid", tryapiscreenshot.getAdid());
         //渠道用户id
         map.put("appsign", tryapiscreenshot.getAppsign());
@@ -340,13 +336,11 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
             map.put("appid", XWIOSTaskAppid);
             map.put("appsecret", XWIOSTaskAppsecret);
             //字符串拼接
-            str = XWAndroidTaskAppid + deviceid + tryapiscreenshot.getPtype() + tryapiscreenshot.getAppsign() + tryapiscreenshot.getAdid() + XWIOSTaskAppsecret;
+            str = XWIOSTaskAppid + deviceid + tryapiscreenshot.getPtype() + tryapiscreenshot.getAppsign() + tryapiscreenshot.getAdid() + XWIOSTaskAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
         map.put("keycode", encode);
-//        map.put("xwversion", 2);
-        String res = HttpClientUtils.doGet(url, map);
-
+        String res = HttpClientUtils.doPost(url, map);
         SubmitTaskScreenshot resBean = JSONObject.parseObject(res, SubmitTaskScreenshot.class);
         return resBean;
     }
@@ -383,11 +377,10 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
             map.put("appid", XWIOSTaskAppid);
             map.put("appsecret", XWIOSTaskAppsecret);
             //字符串拼接
-            str = XWAndroidTaskAppid + deviceid + tryapiscreenshotbase.getPtype() + tryapiscreenshotbase.getAppsign() + tryapiscreenshotbase.getAdid() + XWIOSTaskAppsecret;
+            str = XWIOSTaskAppid + deviceid + tryapiscreenshotbase.getPtype() + tryapiscreenshotbase.getAppsign() + tryapiscreenshotbase.getAdid() + XWIOSTaskAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
         map.put("keycode", encode);
-//        map.put("xwversion", 2);
         String res = HttpClientUtils.doPost(url, map);
 
         SubmitTaskScreenshot resBean = JSONObject.parseObject(res, SubmitTaskScreenshot.class);
@@ -425,13 +418,11 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
             map.put("appid", XWIOSTaskAppid);
             map.put("appsecret", XWIOSTaskAppsecret);
             //字符串拼接
-            str = XWAndroidTaskAppid + deviceid + tryapisignature.getPtype() + tryapisignature.getAppsign() + tryapisignature.getAdid() + XWIOSTaskAppsecret;
+            str = XWIOSTaskAppid + deviceid + tryapisignature.getPtype() + tryapisignature.getAppsign() + tryapisignature.getAdid() + XWIOSTaskAppsecret;
         }
         String encode = MD5.MD5Encode(str, "UTF-8", false);
         map.put("keycode", encode);
-//        map.put("xwversion", 2);
         String res = HttpClientUtils.doGet(url, map);
-
         SubmitTaskSignature resBean = JSONObject.parseObject(res, SubmitTaskSignature.class);
         return resBean;
     }

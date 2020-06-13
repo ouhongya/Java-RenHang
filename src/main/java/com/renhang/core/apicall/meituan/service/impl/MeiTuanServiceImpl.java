@@ -41,24 +41,10 @@ public class MeiTuanServiceImpl implements MeiTuanService {
         if(version==null || "".equals(version)){
             version="2.0";
         }
-
         map.put("version",version);
-        Long timestamp = adListBean.getTimestamp();
-
-        if(timestamp==null){
-            map.put("timestamp",String.valueOf(System.currentTimeMillis()));
-        }else{
-            map.put("timestamp",adListBean.getTimestamp().toString());
-        }
+        map.put("timestamp",System.currentTimeMillis());
         String ste = utmSource+map.get("timestamp").toString();
-//        String accessToken  = AES.encryptHex(ste, utmSecret);
-        byte[] bytes=null;
-        try{
-            bytes= AES.pwdHandler(ste);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        map.put("access_token",new String(bytes));
+        map.put("access_token",AES.encryptHex(ste,utmSecret));
         map.put("startVerifyDate",adListBean.getStartVerifyDate());
         map.put("endVerifyDate",adListBean.getEndVerifyDate());
         map.put("startAddDate",adListBean.getStartAddDate());
@@ -89,34 +75,11 @@ public class MeiTuanServiceImpl implements MeiTuanService {
     public String TryApiSecondCash(SecondCashback secondcashback) throws URISyntaxException {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("utmSource", utmSource);
-        String timestamp = secondcashback.getTimestamp();
-        if("".equals(timestamp) || timestamp==null ){
-            map.put("timestamp",String.valueOf(System.currentTimeMillis()));
-        }else{
-            map.put("timestamp",timestamp);
-        }
+        map.put("timestamp",String.valueOf(System.currentTimeMillis()));
         String ste = map.get("utmSource").toString()+map.get("timestamp").toString();
-//        String accessToken  = AES.encryptHex(ste, "");
-        byte[] bytes=null;
-        try{
-            bytes= AES.pwdHandler(ste);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        map.put("access_token",bytes);
-//        map.put("access_token",accessToken);
-        String UtmMedium= secondcashback.getUtmMedium();
-        if(UtmMedium==null){
-            map.put("utmMedium", AES.encryptHex(ste,""));
-        }else{
-            map.put("utmMedium", AES.encryptHex(secondcashback.getUtmMedium(),""));
-        }
-        if(secondcashback.getRequestId()==null){
-            map.put("requestId",ste);
-        }else {
-            map.put("requestId",secondcashback.getRequestId());
-        }
-
+        map.put("access_token",AES.encryptHex(ste,utmSecret));
+        map.put("utmMedium", AES.encryptHex(ste,utmSecret));
+        map.put("requestId",secondcashback.getRequestId());
         map.put("activity",activity);
         map.put("version",1.0);
         // 创建uri
@@ -133,33 +96,11 @@ public class MeiTuanServiceImpl implements MeiTuanService {
     public String TryApiShareCoupon(ShareCoupon sharecoupon) throws URISyntaxException {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("utmSource", utmSource);
-        String timestamp = sharecoupon.getTimestamp();
-        if("".equals(timestamp) || timestamp==null ){
-            map.put("timestamp",String.valueOf(System.currentTimeMillis()));
-        }else{
-            map.put("timestamp",timestamp);
-        }
+        map.put("timestamp",String.valueOf(System.currentTimeMillis()));
         String ste = map.get("utmSource").toString()+map.get("timestamp").toString();
-//        String accessToken  = AES.encryptHex(ste, "");
-        byte[] bytes=null;
-        try{
-            bytes= AES.pwdHandler(ste);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        map.put("access_token",bytes);
-        String UtmMedium= sharecoupon.getUtmMedium();
-        if(UtmMedium==null){
-            map.put("utmMedium", AES.encryptHex(ste,""));
-        }else{
-            map.put("utmMedium", AES.encryptHex(sharecoupon.getUtmMedium(),""));
-        }
-        if(sharecoupon.getRequestId()==null){
-            map.put("requestId",ste);
-        }else {
-            map.put("requestId",sharecoupon.getRequestId());
-        }
-
+        map.put("access_token",AES.encryptHex(ste,utmSecret));
+        map.put("utmMedium", AES.encryptHex(ste,utmSecret));
+        map.put("requestId",sharecoupon.getRequestId());
         map.put("activity",activity);
         map.put("version",1.0);
         // 创建uri
@@ -170,6 +111,5 @@ public class MeiTuanServiceImpl implements MeiTuanService {
         }
         return builder.build().toString();
     }
-
 
 }

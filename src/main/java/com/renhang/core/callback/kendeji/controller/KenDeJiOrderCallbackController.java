@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.renhang.common.Utils.GlobalUtils;
 import com.renhang.core.callback.kendeji.pojo.OrderEventVo;
 import com.renhang.core.callback.kendeji.service.KenDeJiOrderCallbackService;
-import com.renhang.core.callback.xiecheng.pojo.XieChenOrderCallbackVo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +29,8 @@ public class KenDeJiOrderCallbackController {
     @PostMapping("/order/notify")
     public String KenDeJiOrderCallback(@RequestBody String params) {
         String response = "";
-        OrderEventVo orderEventVo = JSONObject.parseObject(params, OrderEventVo.class);
         try {
+            OrderEventVo orderEventVo = JSONObject.parseObject(params, OrderEventVo.class);
             response =  kenDeJiOrderCallbackService.KenDeJiOrderCallback(orderEventVo);
         } catch (Exception e) {
             log.error(e);

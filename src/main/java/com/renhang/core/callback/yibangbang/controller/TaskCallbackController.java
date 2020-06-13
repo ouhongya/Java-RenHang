@@ -1,17 +1,11 @@
 package com.renhang.core.callback.yibangbang.controller;
 
-import com.renhang.common.Utils.GlobalUtils;
-import com.renhang.common.Utils.HttpClientUtils;
-import com.renhang.common.Utils.MD5;
-import com.renhang.core.callback.yibangbang.pojo.*;
+
 import com.renhang.core.callback.yibangbang.service.TaskCallbackService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @RequestMapping("/yibangbang/APICALL")
 @RestController

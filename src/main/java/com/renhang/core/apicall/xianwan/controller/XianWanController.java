@@ -34,7 +34,7 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/try_api_list")
-    public TryApiListRes try_api_list(@RequestBody TryApiList adListBean) {
+    public TryApiListRes try_api_list(TryApiList adListBean) {
         TryApiListRes advertising = null;
         try {
              advertising = mtUserService.TryApiList(adListBean);
@@ -48,7 +48,7 @@ public class XianWanController {
     }
 
     /**
-     * 获取我广告列表
+     * 获取我参与的广告
      * @param myActionAdListVo
      * @return
      */
@@ -60,7 +60,7 @@ public class XianWanController {
             return myActionAdListVoRes;
         }catch (Exception e){
             log.error(e);
-            log.error("获取我广告列表异常了\n");
+            log.error("获取我参与的广告异常了\n");
             log.error(GlobalUtils.format(new Date()));
             return myActionAdListVoRes;
         }
@@ -72,7 +72,7 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/try_api_adInfo")
-    public TryApiAdInfoRes try_api_adInfo(@RequestBody TryApiAdInfo tryApiAdInfo) {
+    public TryApiAdInfoRes try_api_adInfo(TryApiAdInfo tryApiAdInfo) {
         TryApiAdInfoRes tryApiAdInfoRes = null;
         try {
              tryApiAdInfoRes = mtUserService.TryApiAdInfo(tryApiAdInfo);
@@ -91,7 +91,7 @@ public class XianWanController {
      * @return
      */
     @GetMapping("/try_api_adClick")
-    public TryApiAdClickRes try_api_adClick(@RequestBody TryApiAdClick tryApiAdClick){
+    public TryApiAdClickRes try_api_adClick(TryApiAdClick tryApiAdClick){
         TryApiAdClickRes tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = mtUserService.tryApiAdClick(tryApiAdClick);

@@ -20,13 +20,15 @@ public class YiBangBangController {
     YiBangBangService mtUserService;
 
 
+
+
     /**
      * 任务墙入口
      * @param
      * @return
      */
     @GetMapping("/try_api_entry")
-    public String try_api_list(@RequestBody  UserVo uservo)  {
+    public String try_api_list(UserVo uservo)  {
         String response = null;
         try {
              response=mtUserService.TryApiEntry(uservo);

@@ -27,7 +27,7 @@ public class XianYuController {
      * @return
      */
     @GetMapping("/gettoken")
-    public ApigaoeVo gettoken(@RequestBody TokenVo tokenVo) {
+    public ApigaoeVo gettoken(TokenVo tokenVo) {
         ApigaoeVo apigaoeVo = null;
         try {
             apigaoeVo =  xiaoZhuoZhuanQianService.getToken(tokenVo);
@@ -57,7 +57,7 @@ public class XianYuController {
         }
         return apigaoeListRes;
     }
-
+    
     /**
      * 获取截图详细信息
      * @param id 列表中返回的试玩id
@@ -67,7 +67,7 @@ public class XianYuController {
     public ApigaoeDetailRes apigaoeDetailRes(String id,String token) {
         ApigaoeDetailRes apigaoeDetailRes = null;
         try {
-            apigaoeDetailRes =  xiaoZhuoZhuanQianService.apigaoeDetail(id,token);
+            apigaoeDetailRes = xiaoZhuoZhuanQianService.apigaoeDetail(id,token);
         } catch (Exception e) {
             log.error(e);
             log.error("获取截图详细信息出错了\n");

@@ -5,8 +5,8 @@ import com.renhang.core.apicall.xianwantask.pojo.*;
 
 
 public interface XianWanTaskService {
-//    TryApiListRes TryApiList(TryApiList adListBean);
-//    TryApiAdInfoRes TryApiAdInfo(TryApiAdInfo TryApiAdInfo);
+    TryApiListRes TryApiList(TryApiList adListBean);
+    TryApiAdInfoRes TryApiAdInfo(TryApiAdInfo TryApiAdInfo);
     LinkTask tryApiAdClick(TryApiAdClick tryApiAdClick);
     SubmitTaskResponse tryApiSubmitTask(TryApiSubmitTask tryapisubmittask);
     SubmitTaskResponse tryApiSubmitTaskList(TryApiSubmitTaskList tryapisubmittasklist);

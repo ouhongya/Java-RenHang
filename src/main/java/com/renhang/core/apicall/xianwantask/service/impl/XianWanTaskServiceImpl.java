@@ -30,105 +30,103 @@ public class XianWanTaskServiceImpl implements XianWanTaskService {
     private String XWIOSTaskAppsecret;
 
 
-//    /**
-//     * 获取广告列表
-//     *
-//     * @param adListBean
-//     * @return
-//     */
-//    @Override
-//    public TryApiListRes TryApiList(TryApiList adListBean) {
-//        String url = "https://h5.wangzhuantianxia.com/adwall/api/cpa/list";
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        //手机设备号
-//        String deviceid = adListBean.getDeviceid().isEmpty() ? "0" : adListBean.getDeviceid();
-//        //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-//        String androidosv = adListBean.getAndroidosv().isEmpty() ? "0" : adListBean.getAndroidosv();
-//        String page = adListBean.getPage().isEmpty() ? "1" : adListBean.getPage();
-//        //每页显示多少
-//        String pagesize = adListBean.getPagesize().isEmpty() ? "200" : adListBean.getPagesize();
-//        //1 iPhone 2 安卓
-//        map.put("ptype", adListBean.getPtype());
-//        map.put("deviceid", deviceid);
-//        map.put("appsign", adListBean.getAppsign());
-//        String str = "";
-//        if (adListBean.getPtype().equals("2")) {
-//            map.put("appid", adListBean.getAppid());
-//            map.put("appsecret", adListBean.getAppsecret());
-//            //安全联盟
-//            map.put("msaoaid", adListBean.getMsaoaid());
-//            map.put("androidosv", androidosv);
-//            //appid+deviceid+msaoaid+androidosv+ptype+appsign+appsecret
-//            str = adListBean.getAppid() + deviceid + adListBean.getMsaoaid() + androidosv + adListBean.getPtype() + adListBean.getAppsign() + adListBean.getAppsecret();
-//        } else {
-//            map.put("appid", XWIOSAppid);
-//            map.put("appsecret", XWIOSAppsecret);
-//            str = XWIOSAppid + deviceid + adListBean.getPtype() + adListBean.getAppsign() + XWIOSAppsecret;
-//        }
-//        map.put("keycode", MD5.MD5Encode(str, "UTF-8", false));
-////      map.put("xwversion",2);
-//        map.put("page", page);
-//        map.put("pagesize", pagesize);
-//        map.put("adListType", adListBean.getAdListType());
-//        map.put("adType", adListBean.getAdType());
-//        map.put("sortType", adListBean.getSortType());
-//        map.put("adName", adListBean.getAdName());
-//        map.put("tag", adListBean.getTag());
-//        map.put("startTime", adListBean.getStartTime());
-//        map.put("taskType", adListBean.getTaskType());
-//        map.put("age", adListBean.getAge());
-//        map.put("userIp", adListBean.getUserIp());
-//        String res = HttpClientUtils.doGet(url, map);
-//        TryApiListRes resBean = JSONObject.parseObject(res, TryApiListRes.class);
-//        return resBean;
-//    }
+    /**
+     * 获取广告列表
+     *
+     * @param adListBean
+     * @return
+     */
+    @Override
+    public TryApiListRes TryApiList(TryApiList adListBean) {
+        String url = "https://h5.wangzhuantianxia.com/adwall/api/cpa/list";
+        Map<String, Object> map = new HashMap<String, Object>();
+        //手机设备号
+        String deviceid = adListBean.getDeviceid().isEmpty() ? "0" : adListBean.getDeviceid();
+        //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
+        String androidosv = adListBean.getAndroidosv().isEmpty() ? "0" : adListBean.getAndroidosv();
+        String msaoaid = adListBean.getMsaoaid().isEmpty() ? "" : adListBean.getMsaoaid();
+        String page = adListBean.getPage().isEmpty() ? "1" : adListBean.getPage();
+        //每页显示多少
+        String pagesize = adListBean.getPagesize().isEmpty() ? "200" : adListBean.getPagesize();
+        //1 iPhone 2 安卓
+        map.put("ptype", adListBean.getPtype());
+        map.put("deviceid", deviceid);
+        map.put("appsign", adListBean.getAppsign());
+        String str = "";
+        if (adListBean.getPtype().equals("2")) {
+            map.put("appid", XWAndroidTaskAppid);
+            map.put("appsecret", XWAndroidTaskAppsecret);
+            //安全联盟
+            map.put("msaoaid", adListBean.getMsaoaid());
+            map.put("androidosv", androidosv);
+            str = XWAndroidTaskAppid + deviceid + msaoaid + androidosv + adListBean.getPtype() + adListBean.getAppsign()  + XWAndroidTaskAppsecret;
+        } else {
+            map.put("appid", XWIOSTaskAppid);
+            map.put("appsecret", XWIOSTaskAppsecret);
+            str = XWIOSTaskAppid + deviceid + adListBean.getPtype() + adListBean.getAppsign() + XWIOSTaskAppsecret;
+        }
+        map.put("keycode", MD5.MD5Encode(str, "UTF-8", false));
+        map.put("page", page);
+        map.put("pagesize", pagesize);
+        map.put("adListType", adListBean.getAdListType());
+        map.put("adType", adListBean.getAdType());
+        map.put("sortType", adListBean.getSortType());
+        map.put("adName", adListBean.getAdName());
+        map.put("tag", adListBean.getTag());
+        map.put("startTime", adListBean.getStartTime());
+        map.put("taskType", adListBean.getTaskType());
+        map.put("age", adListBean.getAge());
+        map.put("userIp", adListBean.getUserIp());
+        String res = HttpClientUtils.doGet(url, map);
+        TryApiListRes resBean = JSONObject.parseObject(res, TryApiListRes.class);
+        return resBean;
+    }
 
-//    /**
-//     * 查看广告详情
-//     *
-//     * @param tryApiAdInfo
-//     * @return
-//     */
-//    @Override
-//    public TryApiAdInfoRes TryApiAdInfo(TryApiAdInfo tryApiAdInfo) {
-//        String url = " https://h5.wangzhuantianxia.com/adwall/api/cpa/details";
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        String str = "";
-//        //设备号是否为空,空就传0
-//        String deviceid = tryApiAdInfo.getDeviceid().isEmpty() ? "0" : tryApiAdInfo.getDeviceid();
-//        //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
-//        String msaoaid = tryApiAdInfo.getMsaoaid().isEmpty() ? "" : tryApiAdInfo.getMsaoaid();
-//        //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
-//        String androidosv = tryApiAdInfo.getAndroidosv().isEmpty() ? "0" : tryApiAdInfo.getAndroidosv();
-//        //广告编号
-//        map.put("adid", tryApiAdInfo.getAdid());
-//        //渠道用户id
-//        map.put("appsign", tryApiAdInfo.getAppsign());
-//        map.put("ptype", tryApiAdInfo.getPtype());
-//        map.put("deviceid", deviceid);
-//        //判断当前是1苹果还是2安卓
-//        if (tryApiAdInfo.getPtype().equals("2")) {
-//            map.put("appid", XWAndroidAppid);
-//            map.put("appsecret", XWAndroidAppsecret);
-//            //IOS 忽略此参数 安卓操作系统版本号 如:29 、28 （android Q 对应 29）
-//            map.put("androidosv", androidosv);
-//            //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
-//            map.put("msaoaid", msaoaid);
-//            //字符串拼接
-//            str = tryApiAdInfo.getPtype() + deviceid + msaoaid + tryApiAdInfo.getAndroidosv() + XWAndroidAppid + tryApiAdInfo.getAppsign() + tryApiAdInfo.getAdid() + XWAndroidAppsecret;
-//        } else {
-//            map.put("appid", XWIOSAppid);
-//            map.put("appsecret", XWIOSAppsecret);
-//            //字符串拼接
-//            str = tryApiAdInfo.getPtype() + deviceid + XWIOSAppid + tryApiAdInfo.getAppsign() + tryApiAdInfo.getAdid() + XWIOSAppsecret;
-//        }
-//        String encode = MD5.MD5Encode(str, "UTF-8", false);
-//        map.put("keycode", encode);
-////        map.put("xwversion", 2);
-//        String res = HttpClientUtils.doGet(url, map);
-//        TryApiAdInfoRes resBean = JSONObject.parseObject(res, TryApiAdInfoRes.class);
-//        return resBean;
-//    }
+    /**
+     * 查看广告详情
+     *
+     * @param tryApiAdInfo
+     * @return
+     */
+    @Override
+    public TryApiAdInfoRes TryApiAdInfo(TryApiAdInfo tryApiAdInfo) {
+        String url = " https://h5.wangzhuantianxia.com/adwall/api/cpa/details";
+        Map<String, Object> map = new HashMap<String, Object>();
+        String str = "";
+        //设备号是否为空,空就传0
+        String deviceid = tryApiAdInfo.getDeviceid().isEmpty() ? "0" : tryApiAdInfo.getDeviceid();
+        //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
+        String msaoaid = tryApiAdInfo.getMsaoaid().isEmpty() ? "" : tryApiAdInfo.getMsaoaid();
+        //IOS 忽略此参数 安卓操作系统版本号 如:安卓10对应的是参数：androidosv=29 （androidQ即安卓10对应androidosv=29）获取不到请传0
+        String androidosv = tryApiAdInfo.getAndroidosv().isEmpty() ? "0" : tryApiAdInfo.getAndroidosv();
+        //广告编号
+        map.put("adid", tryApiAdInfo.getAdid());
+        //渠道用户id
+        map.put("appsign", tryApiAdInfo.getAppsign());
+        map.put("ptype", tryApiAdInfo.getPtype());
+        map.put("deviceid", deviceid);
+        //判断当前是1苹果还是2安卓
+        if (tryApiAdInfo.getPtype().equals("2")) {
+            map.put("appid", XWAndroidTaskAppid);
+            map.put("appsecret", XWAndroidTaskAppsecret);
+            //IOS 忽略此参数 安卓操作系统版本号 如:29 、28 （android Q 对应 29）
+            map.put("androidosv", androidosv);
+            //IOS 忽略此参数 安全联盟OAID （未接入安全联盟请传空字符串“”）
+            map.put("msaoaid", msaoaid);
+            //字符串拼接
+            str = XWAndroidTaskAppid + deviceid + msaoaid + androidosv + tryApiAdInfo.getPtype() + tryApiAdInfo.getAppsign() + tryApiAdInfo.getAdid() + XWAndroidTaskAppsecret;
+        } else {
+            map.put("appid", XWIOSTaskAppid);
+            map.put("appsecret", XWIOSTaskAppsecret);
+            //字符串拼接
+            str = XWIOSTaskAppid + deviceid + tryApiAdInfo.getPtype() + tryApiAdInfo.getAppsign() + XWIOSTaskAppsecret;
+        }
+        String encode = MD5.MD5Encode(str, "UTF-8", false);
+        map.put("keycode", encode);
+        String res = HttpClientUtils.doGet(url, map);
+        TryApiAdInfoRes resBean = JSONObject.parseObject(res, TryApiAdInfoRes.class);
+        return resBean;
+    }
 
     /**
      * 点击领取任务api

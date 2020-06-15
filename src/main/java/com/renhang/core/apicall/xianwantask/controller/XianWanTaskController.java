@@ -20,43 +20,43 @@ public class XianWanTaskController {
     @Autowired
     XianWanTaskService xianWanTaskService;
 
-//    /**
-//     * 获取广告列表
-//     * @param adListBean
-//     * @return
-//     */
-//    @GetMapping("/try_api_list")
-//    public TryApiListRes try_api_list( TryApiList adListBean) {
-//        TryApiListRes advertising = null;
-//        try {
-//             advertising = xianWanTaskService.TryApiList(adListBean);
-//            return advertising;
-//        }catch (Exception e){
-//            log.error(e);
-//            log.error("获取广告列表\n");
-//            log.error(GlobalUtils.format(new Date()));
-//            return advertising;
-//        }
-//    }
+    /**
+     * 获取广告列表
+     * @param adListBean
+     * @return
+     */
+    @GetMapping("/try_api_list")
+    public TryApiListRes try_api_list( TryApiList adListBean) {
+        TryApiListRes advertising = null;
+        try {
+             advertising = xianWanTaskService.TryApiList(adListBean);
+            return advertising;
+        }catch (Exception e){
+            log.error(e);
+            log.error("获取广告列表\n");
+            log.error(GlobalUtils.format(new Date()));
+            return advertising;
+        }
+    }
 
-//    /**
-//     * 查询广告详情
-//     * @param tryApiAdInfo
-//     * @return
-//     */
-//    @GetMapping("/try_api_adInfo")
-//    public TryApiAdInfoRes try_api_adInfo(@RequestBody TryApiAdInfo tryApiAdInfo) {
-//        TryApiAdInfoRes tryApiAdInfoRes = null;
-//        try {
-//             tryApiAdInfoRes = xianWanTaskService.TryApiAdInfo(tryApiAdInfo);
-//            return tryApiAdInfoRes;
-//        }catch (Exception e){
-//            log.error(e);
-//            log.error("查询广告列表\n");
-//            log.error(GlobalUtils.format(new Date()));
-//            return tryApiAdInfoRes;
-//        }
-//    }
+    /**
+     * 查询广告详情
+     * @param tryApiAdInfo
+     * @return
+     */
+    @GetMapping("/try_api_adInfo")
+    public TryApiAdInfoRes try_api_adInfo(TryApiAdInfo tryApiAdInfo) {
+        TryApiAdInfoRes tryApiAdInfoRes = null;
+        try {
+             tryApiAdInfoRes = xianWanTaskService.TryApiAdInfo(tryApiAdInfo);
+            return tryApiAdInfoRes;
+        }catch (Exception e){
+            log.error(e);
+            log.error("查询广告列表\n");
+            log.error(GlobalUtils.format(new Date()));
+            return tryApiAdInfoRes;
+        }
+    }
 
     /**
      * 领取任务api
@@ -122,7 +122,7 @@ public class XianWanTaskController {
      * @return
      */
     @GetMapping("/try_api_submitRecommend")
-    public SubmitTaskResponse try_api_submitRecommend(@RequestBody TryApiAdClick tryapiadclick){
+    public SubmitTaskResponse try_api_submitRecommend(TryApiAdClick tryapiadclick){
         SubmitTaskResponse tryApiAdClickRes = null;
         try {
             tryApiAdClickRes = xianWanTaskService.tryApiSubmitRecommend(tryapiadclick);

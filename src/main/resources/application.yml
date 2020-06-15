@@ -7,10 +7,10 @@ spring:
     name: Java-RenHang
   #数据库连接
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: omy360
-    url: jdbc:mysql://192.168.1.80:3306/renhang?characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useUnicode=true
+    url: jdbc:mysql://192.168.1.80:3306/renhang?characterEncoding=utf-8
     type: com.alibaba.druid.pool.DruidDataSource
   #去求超时时间
   mvc:

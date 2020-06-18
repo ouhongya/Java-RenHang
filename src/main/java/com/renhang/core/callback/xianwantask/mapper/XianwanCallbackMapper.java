@@ -8,5 +8,7 @@ import java.util.Map;
 public interface XianwanCallbackMapper {
 
     void insertOrderToUserCallback(@Param("params") Map<String, String> params);
+    Integer queryOrderNum(String orderNum);
+    void insertOrderToUsertestCallback(@Param("params") Map<String,String> params);
 
 }

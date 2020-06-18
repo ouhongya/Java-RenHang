@@ -1,10 +1,14 @@
 package com.renhang.core.callback.yibangbang.controller;
 
 
+import com.renhang.common.Utils.GlobalUtils;
+import com.renhang.core.callback.yibangbang.pojo.ReceiveModel;
 import com.renhang.core.callback.yibangbang.service.TaskCallbackService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 
 @RequestMapping("/yibangbang/APICALL")
@@ -15,23 +19,23 @@ public class TaskCallbackController {
     @Autowired
     public TaskCallbackService taskCallbackService;
 
-//    /**
-//     * 我方无法获取用户信息，在另一方实现
-//     * 任务墙处理
-//     * @param
-//     * @return
-//     */
-//    @PostMapping("/ToTASKAndCallback")
-//    public String taskAndCallback(@RequestBody ReceiveModel receiveModel ) {
-//        try {
-//             String flag= taskCallbackService.TaskCallbackService(receiveModel);
-//             return flag;
-//        }catch (Exception e){
-//            log.error("任务墙回调出现问题\n"+e);
-//            log.error(GlobalUtils.format(new Date()));
-//        }
-//        return "fail";
-//    }
+    /**
+     *
+     * 任务墙回调
+     * @param
+     * @return
+     */
+    @PostMapping("/ToTASKAndCallback")
+    public String taskAndCallback(@RequestBody ReceiveModel receiveModel ) {
+        try {
+             String flag= taskCallbackService.TaskCallbackService(receiveModel);
+             return flag;
+        }catch (Exception e){
+            log.error("任务墙回调出现问题\n"+e);
+            log.error(GlobalUtils.format(new Date()));
+        }
+        return "fail";
+    }
 
 //    /**
 //     * 我方无法获取用户信息，在另一方实现

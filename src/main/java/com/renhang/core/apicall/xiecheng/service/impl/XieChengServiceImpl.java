@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.TreeMap;
 
+
 @Service
 public class XieChengServiceImpl implements XieChengService {
-
 
     @Value("${xiecheng.AID}")
     private String AID;
